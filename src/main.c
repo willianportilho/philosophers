@@ -6,23 +6,28 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:35:34 by wportilh          #+#    #+#             */
-/*   Updated: 2022/11/22 22:59:25 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/11/22 23:57:47 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
-int main(void)
+void	*life(void *teste)
 {
-	struct timeval	current_time;
-	long	sum;
+	if (!teste)
+	{
+		printf("Philosopher is eating\n");
+		printf("Philosopher is sleeping\n");
+		printf("Philosopher is thinking\n");
+	}
+	return (NULL);
+}
 
-	sleep(4);
-	gettimeofday(&current_time, NULL);
-	sum = current_time.tv_sec;
-	sum += current_time.tv_usec / 1000 / 1000;
-	printf("         tv_sec: %ld\n", current_time.tv_sec);
-	printf("        tv_usec: %ld\n", current_time.tv_usec);
-	printf("Current time is: %ld\n", sum);
-    return (0);
+int	main(void)
+{
+	pthread_t	philo;
+
+	pthread_create(&philo, NULL, &life, NULL);
+	pthread_join(philo, NULL);
+	return (0);
 }
