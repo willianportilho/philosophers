@@ -6,7 +6,7 @@
 #    By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 21:44:36 by wportilh          #+#    #+#              #
-#    Updated: 2022/10/20 19:35:14 by wportilh         ###   ########.fr        #
+#    Updated: 2022/10/20 22:36:17 by wportilh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ NAME =			philo
 
 CC =			cc
 CFLAGS =		-g3 -Wall -Wextra -Werror
+THREAD =		-pthread
 RM =			rm -f
 RM_ALL =		rm -rf
 
@@ -48,7 +49,7 @@ ${NAME}:		${OBJS}
 				@echo "${CYAN}--------------------------"
 				@echo "         objs ok!"
 				@echo "--------------------------"
-				@${CC} ${OBJS} -o ${NAME}
+				@${CC} ${THREAD} ${OBJS} -o ${NAME}
 				@echo "--------------------------"
 				@echo "minishell program created!"
 				@echo "--------------------------${RESET}"
