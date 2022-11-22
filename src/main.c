@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:35:34 by wportilh          #+#    #+#             */
-/*   Updated: 2022/11/23 00:24:04 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/11/23 00:26:05 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(void)
 	while (i < 2)
 	{
 		a = malloc(sizeof(int));
-		*a = i;
+		*a = i + 1;
 		pthread_create(&philo[i], NULL, &life, a);
 		i++;
 	}
