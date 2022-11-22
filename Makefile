@@ -6,7 +6,7 @@
 #    By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 21:44:36 by wportilh          #+#    #+#              #
-#    Updated: 2022/10/20 22:36:17 by wportilh         ###   ########.fr        #
+#    Updated: 2022/11/23 00:22:39 by wportilh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,9 @@ ${OBJ_PATH}%.o:	${SRC_PATH}%.c
 				@mkdir -p obj
 				@${CC} ${CFLAGS} -c $< -o $@
 
+val:			${NAME}
+				${VAL} ./philo
+
 clean:		
 				@${RM_ALL} ${OBJ_PATH}
 				@echo "${CYAN}--------------------------"
@@ -78,4 +81,4 @@ re:				fclean all
 norm:
 				norminette ${SRCS} ${INC}
 
-.PHONY:			all clean fclean re norm
+.PHONY:			all clean fclean re norm val
