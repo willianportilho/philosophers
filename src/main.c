@@ -3,56 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: beatriz <beatriz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:35:34 by wportilh          #+#    #+#             */
-/*   Updated: 2022/11/23 06:06:17 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/11/23 13:38:02 by beatriz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
-
-pthread_mutex_t mutex;
 
 void	*life(void *philo)
 {
 	t_philo	*pointer_philo;
 
 	pointer_philo = (t_philo *) philo;
-	pthread_mutex_lock(&mutex);
-	printf("Philosopher %ld is eating\n", pointer_philo->a);
-	printf("Philosopher %ld is sleeping\n", pointer_philo->a);
-	printf("Philosopher %ld is thinking\n", pointer_philo->a);
-	pthread_mutex_unlock(&mutex);
+	printf("Philosopher %d is eating\n", pointer_philo->id);
+	printf("Philosopher %d is sleeping\n", pointer_philo->id);
+	printf("Philosopher %d is thinking\n", pointer_philo->id);
 	return (NULL);
 }
 
 int	main(void)
 {
-	t_philo		*philo;
-	int			i;
+	t_data		data;
 
-	i = 0;
-	philo = ft_calloc(2, sizeof(t_philo));
-	philo[0].philo = ft_calloc(1, sizeof(pthread_t));
-	philo[1].philo = ft_calloc(1, sizeof(pthread_t));
-	pthread_mutex_init(&mutex, NULL);
-	while (i < 2)
+	init(&data);
+	while (data.i < 2)
 	{
-		philo[i].a = i + 1111;
-		printf("%ld\n", philo[i].a);
-		pthread_create(philo[i].philo, NULL, &life, (void *)&philo[i]);
-		i++;
+		data.philo[data.i].id = data.i + 1;
+		pthread_create(data.philo[data.i].philo, NULL, &life, (void *)&data.philo[data.i]);
+		data.i++;
 	}
-	i = 0;
-	while (i < 2)
+	data.i = 0;
+	while (data.i < 2)
 	{
-		pthread_join(*philo[i].philo, NULL);
-		i++;
+		pthread_join(*data.philo[data.i].philo, NULL);
+		data.i++;
 	}
-	pthread_mutex_destroy(&mutex);
-	free(philo[0].philo);
-	free(philo[1].philo);
-	free(philo);
+	free(data.philo[0].philo);
+	free(data.philo[1].philo);
+	free(data.philo);
 	return (0);
 }
