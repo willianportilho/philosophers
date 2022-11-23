@@ -6,11 +6,11 @@
 #    By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 21:44:36 by wportilh          #+#    #+#              #
-#    Updated: 2022/11/23 00:22:39 by wportilh         ###   ########.fr        #
+#    Updated: 2022/11/23 05:57:15 by wportilh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SOURCES =		main.c
+SOURCES =		main.c utils.c
 
 NAME =			philo
 

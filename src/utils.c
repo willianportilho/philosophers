@@ -1,32 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/20 19:37:26 by wportilh          #+#    #+#             */
-/*   Updated: 2022/11/23 06:04:21 by wportilh         ###   ########.fr       */
+/*   Created: 2022/11/23 05:25:54 by wportilh          #+#    #+#             */
+/*   Updated: 2022/11/23 05:26:34 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#include "../inc/philo.h"
 
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <pthread.h>
-# include <sys/time.h>
-# include <string.h>
-
-typedef struct	s_philo
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	pthread_t	*philo;
-	int			a;
-}				t_philo;
+	void	*n;
 
-void	*ft_memset(void *s, int c, size_t n);
-void	*ft_calloc(size_t nmemb, size_t size);
+	n = malloc(nmemb * size);
+	if (!n)
+		return (NULL);
+	ft_memset(n, 0, nmemb * size);
+	return (n);
+}
 
-#endif
+void	*ft_memset(void *s, int c, size_t n)
+{
+	size_t			i;
+	unsigned char	*ptr;
+
+	i = 0;
+	ptr = (unsigned char *)s;
+	while (i < n)
+	{
+		ptr[i] = (unsigned char)c;
+		i++;
+	}
+	return (ptr);
+}
