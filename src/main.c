@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beatriz <beatriz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:35:34 by wportilh          #+#    #+#             */
-/*   Updated: 2022/11/23 13:38:02 by beatriz          ###   ########.fr       */
+/*   Updated: 2022/11/23 14:09:10 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ int	main(void)
 		pthread_join(*data.philo[data.i].philo, NULL);
 		data.i++;
 	}
-	free(data.philo[0].philo);
-	free(data.philo[1].philo);
-	free(data.philo);
+	clean(&data);
 	return (0);
 }
