@@ -23,7 +23,7 @@
 typedef struct	s_philo
 {
 	pthread_t	*philo;
-	int			a;
+	size_t		a;
 }				t_philo;
 
 void	*ft_memset(void *s, int c, size_t n);

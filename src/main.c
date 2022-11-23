@@ -20,9 +20,9 @@ void	*life(void *philo)
 
 	pointer_philo = (t_philo *) philo;
 	pthread_mutex_lock(&mutex);
-	printf("Philosopher %d is eating\n", pointer_philo->a);
-	printf("Philosopher %d is sleeping\n", pointer_philo->a);
-	printf("Philosopher %d is thinking\n", pointer_philo->a);
+	printf("Philosopher %ld is eating\n", pointer_philo->a);
+	printf("Philosopher %ld is sleeping\n", pointer_philo->a);
+	printf("Philosopher %ld is thinking\n", pointer_philo->a);
 	pthread_mutex_unlock(&mutex);
 	return (NULL);
 }
@@ -40,8 +40,8 @@ int	main(void)
 	while (i < 2)
 	{
 		philo[i].a = i + 1111;
-		printf("%d\n", philo[i].a);
-		pthread_create(philo[i].philo, NULL, &life, (void *)philo + i);
+		printf("%ld\n", philo[i].a);
+		pthread_create(philo[i].philo, NULL, &life, (void *)&philo[i]);
 		i++;
 	}
 	i = 0;
