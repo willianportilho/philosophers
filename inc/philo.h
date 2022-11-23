@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:37:26 by wportilh          #+#    #+#             */
-/*   Updated: 2022/11/22 22:59:13 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/11/23 03:48:50 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,11 @@
 # include <stdlib.h>
 # include <pthread.h>
 # include <sys/time.h>
+
+typedef struct	s_philo
+{
+	pthread_t	*philo;
+	int			a;
+}				t_philo;
 
 #endif
