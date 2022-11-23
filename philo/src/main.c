@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:35:34 by wportilh          #+#    #+#             */
-/*   Updated: 2022/11/23 14:19:56 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/11/23 16:07:15 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	*life(void *philo)
 	t_philo	*pointer_philo;
 
 	pointer_philo = (t_philo *) philo;
-	printf("Philosopher %d is eating\n", pointer_philo->id);
-	printf("Philosopher %d is sleeping\n", pointer_philo->id);
-	printf("Philosopher %d is thinking\n", pointer_philo->id);
+	printf("%ld Philosopher %d is eating\n", current_time(), pointer_philo->id);
+	printf("%ld Philosopher %d is sleeping\n", current_time(), pointer_philo->id);
+	printf("%ld Philosopher %d is thinking\n", current_time(), pointer_philo->id);
 	return (NULL);
 }
 

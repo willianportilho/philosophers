@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:37:26 by wportilh          #+#    #+#             */
-/*   Updated: 2022/11/23 14:02:59 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/11/23 16:05:57 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ typedef struct	s_philo
 
 typedef struct s_data
 {
-	int			i;
-	int			n_philo;
-	t_philo		*philo;
-}				t_data;
+	int				i;
+	int				n_philo;
+	t_philo			*philo;
+}					t_data;
 
-
+long	current_time(void);
 void	*ft_memset(void *s, int c, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
 void    init(t_data *data);
