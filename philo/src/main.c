@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:35:34 by wportilh          #+#    #+#             */
-/*   Updated: 2022/11/23 16:07:15 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/11/25 20:53:36 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	main(void)
 	init(&data);
 	while (data.i < data.n_philo)
 	{
-		data.philo[data.i].id = data.i + 1;
 		pthread_create(data.philo[data.i].philo, NULL, &life, (void *)&data.philo[data.i]);
 		data.i++;
 	}

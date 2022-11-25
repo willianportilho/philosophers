@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:37:26 by wportilh          #+#    #+#             */
-/*   Updated: 2022/11/23 16:05:57 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/11/25 20:07:31 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ typedef struct	s_philo
 {
 	pthread_t	*philo;
 	int			id;
+	int			fork_l;
+	int			fork_r;
 }				t_philo;
 
 typedef struct s_data
