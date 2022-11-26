@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 12:56:14 by beatriz           #+#    #+#             */
-/*   Updated: 2022/11/25 20:52:44 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/11/25 21:01:49 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void alloc_philo(t_data *data)
 
     count = 0;
     data->i = 0;
-    data->n_philo = 6;
+    data->n_philo = 4;
     data->philo = ft_calloc(data->n_philo, sizeof(t_philo));
     while(count < data->n_philo)
     {
@@ -27,7 +27,7 @@ static void alloc_philo(t_data *data)
     }    
 }
 
-static void init_vars_position(t_data *data)
+static void init_vars(t_data *data)
 {
     int i;
 
@@ -50,5 +50,5 @@ static void init_vars_position(t_data *data)
 void    init(t_data *data)
 {
     alloc_philo(data);
-    init_vars_position(data);
+    init_vars(data);
 }
