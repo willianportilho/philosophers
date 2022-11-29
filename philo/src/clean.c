@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 13:56:43 by beatriz           #+#    #+#             */
-/*   Updated: 2022/11/29 15:56:22 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/11/29 17:02:56 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,4 +15,5 @@
 void    clean(t_data *data)
 {
 	free(data->philo_index);
+	free(data->forks);
 }
