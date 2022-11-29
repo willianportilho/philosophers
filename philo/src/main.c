@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:35:34 by wportilh          #+#    #+#             */
-/*   Updated: 2022/11/29 17:40:24 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/11/29 18:39:54 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	*life(void *philo)
 	printf("%ld Philosopher %d has taken a fork left\n", current_time(), ph->id);
 	pthread_mutex_lock(&ph->data->forks[ph->fork_r]);
 	printf("%ld Philosopher %d has taken a fork right\n", current_time(), ph->id);
-	usleep(3000000);
-	pthread_mutex_unlock(&ph->data->forks[ph->fork_l]);
+	usleep(100);
 	pthread_mutex_unlock(&ph->data->forks[ph->fork_r]);
+	pthread_mutex_unlock(&ph->data->forks[ph->fork_l]);
 	return (NULL);
 }
 
@@ -36,8 +36,7 @@ int	main(void)
 	{
 		pthread_create(&data.philo_index[data.i].philo_thread, NULL, &life, (void *)&data.philo_index[data.i]);
 		data.i++;
-		//if ((data.i % 2) == 0)
-		//	usleep(1000);
+		usleep(1000);
 	}
 	data.i = 0;
 	while (data.i < data.n_philo)

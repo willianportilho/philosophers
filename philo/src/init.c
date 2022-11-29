@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 12:56:14 by beatriz           #+#    #+#             */
-/*   Updated: 2022/11/29 16:58:33 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/11/29 18:32:31 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,17 @@ static void init_vars(t_data *data)
     {
         data->philo_index[i].id = i + 1;
         if (i == 0)
-            data->philo_index[i].fork_l = data->n_philo;
+            data->philo_index[i].fork_l = data->n_philo - 1;
         else
-            data->philo_index[i].fork_l = i;
-        data->philo_index[i].fork_r = i + 1;
+            data->philo_index[i].fork_l = i - 1;
+        data->philo_index[i].fork_r = i;
         data->philo_index[i].data = data;
         i++;
     }
-    //i = -1;
-    //while (++i < data->n_philo)
-    //    printf("philosopher nº %d: fork_l %d | fork_r %d\n", i + 1, data->philo_index[i].fork_l,  data->philo_index[i].fork_r);
+    /*i = -1;
+    while (++i < data->n_philo)
+        printf("philosopher nº %d: fork_l %d | fork_r %d\n", i + 1, data->philo_index[i].fork_l,  data->philo_index[i].fork_r);
+    */
 }
 
 void    init(t_data *data)
