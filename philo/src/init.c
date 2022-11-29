@@ -6,13 +6,13 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 12:56:14 by beatriz           #+#    #+#             */
-/*   Updated: 2022/11/25 21:01:49 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/11/29 15:26:14 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
-static void alloc_philo(t_data *data)
+static void init_philo(t_data *data)
 {
     int count;
 
@@ -40,6 +40,7 @@ static void init_vars(t_data *data)
         else
             data->philo[i].fork_l = i;
         data->philo[i].fork_r = i + 1;
+        data->philo[i].data = data;
         i++;
     }
     i = -1;
@@ -49,6 +50,6 @@ static void init_vars(t_data *data)
 
 void    init(t_data *data)
 {
-    alloc_philo(data);
+    init_philo(data);
     init_vars(data);
 }
