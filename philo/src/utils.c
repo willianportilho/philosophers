@@ -6,11 +6,20 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 05:25:54 by wportilh          #+#    #+#             */
-/*   Updated: 2022/11/23 05:26:34 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/11/29 19:44:37 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
+
+int	ft_isdigit(int c)
+{
+	if (((c >= '0') && (c <= '9')))
+	{
+		return (2048);
+	}
+	return (0);
+}
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {

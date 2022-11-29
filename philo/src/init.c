@@ -6,11 +6,34 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 12:56:14 by beatriz           #+#    #+#             */
-/*   Updated: 2022/11/29 19:08:57 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/11/29 19:55:35 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
+
+static void check_args(int argc, char *argv[])
+{
+    int i;
+    int j;
+
+    i = 1;
+    j = 0;
+    if ((argc < 5) || (argc < 6))
+        printf("./philo needed more 4 or 5 arguments\n");
+    while (argv[i])
+    {
+        while (argv[i][j])
+        {
+            if (((ft_isdigit(argv[i][j]) == 0) || (argv[i][j] < 0)) && (argv[i][0] != '+'))
+            {
+                printf("Only positive numbers are accept like arguments\n");
+            }
+            j++;
+        }
+        i++;
+    }
+}
 
 static void init_philo(t_data *data)
 {
@@ -55,8 +78,9 @@ static void init_vars(t_data *data)
     */
 }
 
-void    init(t_data *data)
+void    init(int argc, char *argv[], t_data *data)
 {
+    check_args(argc, argv);
     init_philo(data);
     init_forks(data);
     init_vars(data);
