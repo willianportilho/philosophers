@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:37:26 by wportilh          #+#    #+#             */
-/*   Updated: 2022/11/29 16:28:31 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/11/29 19:07:22 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_data
 {
 	int				i;
 	int				n_philo;
+	pthread_mutex_t	message;
 	pthread_mutex_t	*forks;
 	t_philo			*philo_index;
 }					t_data;

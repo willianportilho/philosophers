@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 12:56:14 by beatriz           #+#    #+#             */
-/*   Updated: 2022/11/29 18:32:31 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/11/29 19:08:57 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static void init_forks(t_data *data)
         pthread_mutex_init(&data->forks[i], NULL);
         i++;
     }
+    pthread_mutex_init(&data->message, NULL);
 }
 
 static void init_vars(t_data *data)

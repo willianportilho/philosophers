@@ -6,11 +6,16 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:35:34 by wportilh          #+#    #+#             */
-/*   Updated: 2022/11/29 18:39:54 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/11/29 19:14:44 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
+
+void	print_message(char *message, t_philo *ph)
+{
+	printf("%ld philo %d %s\n", current_time(), ph->id, message);
+}
 
 void	*life(void *philo)
 {
@@ -18,9 +23,9 @@ void	*life(void *philo)
 
 	ph = (t_philo *) philo;
 	pthread_mutex_lock(&ph->data->forks[ph->fork_l]);
-	printf("%ld Philosopher %d has taken a fork left\n", current_time(), ph->id);
+	print_message("has taken a fork left", ph);
 	pthread_mutex_lock(&ph->data->forks[ph->fork_r]);
-	printf("%ld Philosopher %d has taken a fork right\n", current_time(), ph->id);
+	print_message("has taken a fork right", ph);
 	usleep(100);
 	pthread_mutex_unlock(&ph->data->forks[ph->fork_r]);
 	pthread_mutex_unlock(&ph->data->forks[ph->fork_l]);
@@ -50,6 +55,7 @@ int	main(void)
 		pthread_mutex_destroy(&data.forks[i]);
 		i++;
 	}
+	pthread_mutex_destroy(&data.message);
 	clean(&data);
 	return (0);
 }
