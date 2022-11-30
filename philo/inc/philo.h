@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:37:26 by wportilh          #+#    #+#             */
-/*   Updated: 2022/11/29 22:43:16 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/11/30 00:30:54 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 # include <pthread.h>
 # include <sys/time.h>
 # include <string.h>
+
+#define TRUE 1
+#define FALSE 0
 
 typedef struct	s_philo
 {
@@ -43,7 +46,7 @@ void	*ft_memset(void *s, int c, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
 int		ft_isdigit(int c);
 long	ft_atol(const char *nptr);
-void    init(int argc, char *argv[], t_data *data);
+int		init(int argc, char *argv[], t_data *data);
 void    clean(t_data *data);
 
 #endif

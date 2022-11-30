@@ -6,13 +6,13 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 22:44:03 by wportilh          #+#    #+#             */
-/*   Updated: 2022/11/29 22:46:06 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/11/30 00:38:25 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
-void    print_number_arg_error(t_data *data)
+void    print_error(t_data *data)
 {
     
 }
