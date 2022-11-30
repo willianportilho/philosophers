@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 12:56:14 by beatriz           #+#    #+#             */
-/*   Updated: 2022/11/30 01:44:10 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/11/30 02:30:39 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,21 @@ static int check_args(int argc, char *argv[], t_data *data)
             }
             j++;
         }
+        if ((ft_strlen(argv[i]) > 10) || (ft_atol(argv[i]) > __INT_MAX__))
+        {
+            printf("Number higher than MAX_INT\n");
+            return (FALSE);
+        }
         j = 0;
         i++;
     }
     data->n_philos = ft_atol(argv[1]);
+    data->time_to_die = ft_atol(argv[2]);
+    data->time_to_eat = ft_atol(argv[3]);
+    data->time_to_sleep = ft_atol(argv[4]);
+    data->n_times_eat = 0;
+    if (argc == 6)
+        data->n_times_eat = ft_atol(argv[5]);
     return (TRUE);
 }
 
