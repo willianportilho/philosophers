@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 12:56:14 by beatriz           #+#    #+#             */
-/*   Updated: 2022/11/30 00:51:29 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/11/30 00:55:09 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static int check_args(int argc, char *argv[], t_data *data)
         printf("./philo needed more 4 or 5 arguments\n");
         return (FALSE);
     }
-    printf("REREREREzn\n");
     while (argv[i])
     {
         if ((argv[i][j] == '+') && (argv[i][j + 1] != '\0'))
