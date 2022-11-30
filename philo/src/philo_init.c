@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   philo_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 12:56:14 by beatriz           #+#    #+#             */
-/*   Updated: 2022/11/30 00:55:09 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/11/30 01:44:10 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static int init_forks(t_data *data)
         }
         i++;
     }
-    if (pthread_mutex_init(&data->message, NULL) == -1)
+    if (pthread_mutex_init(&data->status_msg, NULL) == -1)
     {
         printf("message message allocation error\n");
         return (FALSE);
