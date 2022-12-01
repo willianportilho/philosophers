@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:37:26 by wportilh          #+#    #+#             */
-/*   Updated: 2022/11/30 03:08:44 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/12/01 03:47:07 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,18 @@
 # include <sys/time.h>
 # include <string.h>
 
-#define TRUE 1
-#define FALSE 0
-#define SUCCESS 0
+# define TRUE 1
+# define FALSE 0
+# define SUCCESS 0
 
-typedef struct	s_philo
+typedef struct s_philo
 {
-	int			id;
-	int			fork_l;
-	int			fork_r;
-	pthread_t	philo_thread;
+	int				id;
+	int				fork_l;
+	int				fork_r;
+	pthread_t		philo_thread;
 	struct s_data	*data;
-}				t_philo;
+}					t_philo;
 
 typedef struct s_data
 {
@@ -50,16 +50,16 @@ typedef struct s_data
 long long	current_time(void);
 int			init(int argc, char *argv[], t_data *data);
 void		clean(t_data *data);
-int 		start(t_data *data);
+int			start(t_data *data);
 int			finish(t_data *data);
 
 /* ---------------------------------------------------------------------*\
 |	utils																 |
 \* ---------------------------------------------------------------------*/
-int		ft_isdigit(int c);
-size_t	ft_strlen(const char *s);
-long	ft_atol(const char *nptr);
-void	*ft_memset(void *s, int c, size_t n);
-void	*ft_calloc(size_t nmemb, size_t size);
+int			ft_isdigit(int c);
+size_t		ft_strlen(const char *s);
+long		ft_atol(const char *nptr);
+void		*ft_memset(void *s, int c, size_t n);
+void		*ft_calloc(size_t nmemb, size_t size);
 
 #endif
