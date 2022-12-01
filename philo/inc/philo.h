@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:37:26 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/01 03:47:07 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/12/01 13:53:12 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int			init(int argc, char *argv[], t_data *data);
 void		clean(t_data *data);
 int			start(t_data *data);
 int			finish(t_data *data);
+int			print_message_error(char *message);
 
 /* ---------------------------------------------------------------------*\
 |	utils																 |
