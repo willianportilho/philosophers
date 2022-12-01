@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 01:08:40 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/01 17:55:13 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/12/01 19:59:31 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	print_status_msg(char *status_msg, t_philo *ph)
 	if (pthread_mutex_lock(&ph->data->status_msg) != SUCCESS)
 		return (print_message_error("error: pthread_mutex_lock (status_msg)"));
 	printf("%lld philo %d %s\n", \
-	current_time() - ph->data->initial_time, ph->id, status_msg);
+	(current_time() - ph->data->initial_time), ph->id, status_msg);
 	if (pthread_mutex_unlock(&ph->data->status_msg) != SUCCESS)
 		return (print_message_error("error: pthread_mutex_unlock (status_msg)"));
 	return (TRUE);
@@ -36,7 +36,7 @@ static void	*life(void *philo)
 	t_philo	*ph;
 
 	ph = (t_philo *) philo;
-	while (ph->times_ate != 0)
+	while (ph->times_ate != FINISH_EAT)
 	{
 		if (pthread_mutex_lock(&ph->data->forks[ph->fork_left]) != SUCCESS)
 			return (life_error("error: pthread_mutex_lock (fork_left)"));
@@ -45,7 +45,7 @@ static void	*life(void *philo)
 			return (life_error("error: pthread_mutex_lock (fork_right)"));
 		print_status_msg("has taken a fork (right)", ph);
 		print_status_msg("is eating", ph);
-		usleep(ph->data->time_to_eat * 1000);
+		usleep((ph->data->time_to_eat * 1000) - LAG);
 		if (pthread_mutex_unlock(&ph->data->forks[ph->fork_right]) != SUCCESS)
 			return (life_error("error: pthread_mutex_unlock (fork_right)"));
 		if (pthread_mutex_unlock(&ph->data->forks[ph->fork_left]) != SUCCESS)
@@ -70,8 +70,7 @@ int	start(t_data *data)
 		if (pthread_create(&data->philo_index[i].philo_thread, \
 		NULL, &life, (void *)&data->philo_index[i]) == -1)
 			return (print_message_error("error: pthread_create"));
-		if ((i % 2) == 0)
-			usleep(10000);
+		usleep(LAG);
 		i++;
 	}
 	return (TRUE);

@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 12:56:14 by beatriz           #+#    #+#             */
-/*   Updated: 2022/12/01 17:41:38 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/12/01 19:45:14 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	init_data(int argc, char *argv[], t_data *data)
 	data->time_to_die = ft_atol(argv[2]);
 	data->time_to_eat = ft_atol(argv[3]);
 	data->time_to_sleep = ft_atol(argv[4]);
-	data->n_times_eat = NO_LIMIT;
+	data->n_times_eat = LIMITLESS;
 	if (argc == 6)
 		data->n_times_eat = ft_atol(argv[5]);	
 }
