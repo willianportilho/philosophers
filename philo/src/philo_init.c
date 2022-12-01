@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 12:56:14 by beatriz           #+#    #+#             */
-/*   Updated: 2022/12/01 13:56:56 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/12/01 14:37:19 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	check_args(int argc, char *argv[])
 	i = 1;
 	j = 0;
 	if ((argc < 5) || (argc > 6))
-		return (print_message_error("./philo needed more 4 or 5 arguments\n"));
+		return (print_message_error("error: needed 5 or 6 arguments"));
 	while (argv[i])
 	{
 		if ((argv[i][j] == '+') && (argv[i][j + 1] != '\0'))
@@ -28,11 +28,11 @@ static int	check_args(int argc, char *argv[])
 		while (argv[i][j])
 		{
 			if (ft_isdigit(argv[i][j]) == FALSE)
-				return (print_message_error("Only positive numbers are accept like arguments\n"));
+				return (print_message_error("error: only positive numbers are accepted"));
 			j++;
 		}
 		if ((ft_strlen(argv[i]) > 10) || (ft_atol(argv[i]) > __INT_MAX__))
-			return (print_message_error("Number higher than MAX_INT\n"));
+			return (print_message_error("error: number(s) greater than MAX_INT"));
 		j = 0;
 		i++;
 	}
@@ -57,7 +57,7 @@ static int	init_philo(t_data *data)
 	i = 0;
 	data->philo_index = ft_calloc(data->n_philos, sizeof(t_philo));
 	if (data->philo_index == NULL)
-		return (print_message_error("init_philo allocation fail\n"));
+		return (print_message_error("error: init_philo allocation"));
 	while (i < data->n_philos)
 	{
 		data->philo_index[i].id = i + 1;
@@ -79,15 +79,15 @@ static int	init_forks(t_data *data)
 	i = 0;
 	data->forks = ft_calloc(data->n_philos, sizeof(pthread_mutex_t));
 	if (data->forks == NULL)
-		return (print_message_error("init_forks allocation fail\n"));
+		return (print_message_error("error: init_forks allocation"));
 	while (i < data->n_philos)
 	{
 		if (pthread_mutex_init(&data->forks[i], NULL) == -1)
-			return (print_message_error("forks allocation error\n"));
+			return (print_message_error("error: pthread_mutex_init (forks)"));
 		i++;
 	}
 	if (pthread_mutex_init(&data->status_msg, NULL) == -1)
-		return (print_message_error("message message allocation error\n"));
+		return (print_message_error("error: pthread_mutex_init (status_msg)"));
 	return (TRUE);
 }
 
