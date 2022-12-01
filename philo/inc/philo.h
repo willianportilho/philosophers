@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:37:26 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/01 17:28:33 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/12/01 17:41:21 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,14 @@
 # define TRUE 1
 # define FALSE 0
 # define SUCCESS 0
+# define NO_LIMIT -1
 
 typedef struct s_philo
 {
 	int				id;
 	int				fork_left;
 	int				fork_right;
+	int				times_ate;
 	pthread_t		philo_thread;
 	struct s_data	*data;
 }					t_philo;
