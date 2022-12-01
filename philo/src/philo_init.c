@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 12:56:14 by beatriz           #+#    #+#             */
-/*   Updated: 2022/12/01 15:24:35 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/12/01 16:58:16 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,26 @@ static int	check_args(int argc, char *argv[])
 	int	i;
 	int	j;
 
-	i = 1;
+	i = 0;
 	j = 0;
 	if ((argc < 5) || (argc > 6))
 		return (print_message_error("error: needed 5 or 6 arguments"));
-	while (argv[i])
+	while (argv[++i])
 	{
 		if ((argv[i][j] == '+') && (argv[i][j + 1] != '\0'))
 				j++;
 		while (argv[i][j])
 		{
 			if (ft_isdigit(argv[i][j]) == FALSE)
-				return (print_message_error("error: put positive numbers"));
+				return (print_message_error("error: put (positive) numbers"));
 			j++;
 		}
 		if ((ft_strlen(argv[i]) > 10) || (ft_atol(argv[i]) > __INT_MAX__))
 			return (print_message_error("error: number(s) greater than MAX_INT"));
+		if (ft_atol(argv[i]) < 1)
+			return (print_message_error("error: all arguments must be greater than 0"));
 		j = 0;
-		i++;
 	}
-	if (ft_atol(argv[1]) < 1)
-		return (print_message_error("error: nº philos must be greater than 0"));
 	return (TRUE);
 }
 
@@ -95,6 +94,8 @@ static int	init_forks(t_data *data)
 
 int	init(int argc, char *argv[], t_data *data)
 {
+	data->philo_index = NULL;
+	data->forks = NULL;
 	if (check_args(argc, argv) != TRUE)
 		return (FALSE);
 	init_data(argc, argv, data);
