@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 01:08:40 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/01 14:56:33 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/12/01 15:05:15 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,28 +29,16 @@ static void	*life(void *philo)
 
 	ph = (t_philo *) philo;
 	if (pthread_mutex_lock(&ph->data->forks[ph->fork_l]) != SUCCESS)
-	{
-		print_message_error("error: pthread_mutex_lock (fork_left)");
-		return (NULL);	
-	}
+		return (life_error("error: pthread_mutex_lock (fork_left)"));
 	print_status_msg("has taken a fork (left)", ph);
 	if (pthread_mutex_lock(&ph->data->forks[ph->fork_r]) != SUCCESS)
-	{
-		print_message_error("error: pthread_mutex_lock (fork_right)");
-		return (NULL);
-	}
+		return (life_error("error: pthread_mutex_lock (fork_right)"));
 	print_status_msg("has taken a fork (right)", ph);
 	usleep(30000);
 	if (pthread_mutex_unlock(&ph->data->forks[ph->fork_r]) != SUCCESS)
-	{
-		print_message_error("error: pthread_mutex_unlock (fork_right)");
-		return (NULL);
-	}
+		return (life_error("error: pthread_mutex_unlock (fork_right)"));
 	if (pthread_mutex_unlock(&ph->data->forks[ph->fork_l]) != SUCCESS)
-	{
-		print_message_error("error: pthread_mutex_unlock (fork_left)");
-		return (NULL);
-	}
+		return (life_error("error: pthread_mutex_unlock (fork_left)"));
 	return (NULL);
 }
 
