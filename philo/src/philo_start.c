@@ -6,11 +6,19 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 01:08:40 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/01 15:05:15 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/12/01 15:31:11 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
+
+long long	current_time(void)
+{
+	struct timeval	time;
+
+	gettimeofday(&time, NULL);
+	return ((time.tv_usec / 1000) + (time.tv_sec * 1000));
+}
 
 static int	print_status_msg(char *status_msg, t_philo *ph)
 {

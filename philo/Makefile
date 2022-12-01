@@ -6,11 +6,11 @@
 #    By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 21:44:36 by wportilh          #+#    #+#              #
-#    Updated: 2022/12/01 13:53:35 by wportilh         ###   ########.fr        #
+#    Updated: 2022/12/01 15:31:23 by wportilh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SOURCES =		main.c philo_utils.c philo_init.c philo_clean.c philo_time.c \
+SOURCES =		main.c philo_utils.c philo_init.c philo_clean.c \
 				philo_start.c philo_finish.c philo_error.c
 
 NAME =			philo
