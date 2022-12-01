@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 12:56:14 by beatriz           #+#    #+#             */
-/*   Updated: 2022/12/01 16:58:16 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/12/01 17:29:51 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ static int	init_philo(t_data *data)
 	{
 		data->philo_index[i].id = i + 1;
 		if (i == 0)
-			data->philo_index[i].fork_l = data->n_philos - 1;
+			data->philo_index[i].fork_left = data->n_philos - 1;
 		else
-			data->philo_index[i].fork_l = i - 1;
-		data->philo_index[i].fork_r = i;
+			data->philo_index[i].fork_left = i - 1;
+		data->philo_index[i].fork_right = i;
 		data->philo_index[i].data = data;
 		i++;
 	}
