@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 12:56:14 by beatriz           #+#    #+#             */
-/*   Updated: 2022/12/01 14:37:19 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/12/01 15:24:35 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	check_args(int argc, char *argv[])
 		while (argv[i][j])
 		{
 			if (ft_isdigit(argv[i][j]) == FALSE)
-				return (print_message_error("error: only positive numbers are accepted"));
+				return (print_message_error("error: put positive numbers"));
 			j++;
 		}
 		if ((ft_strlen(argv[i]) > 10) || (ft_atol(argv[i]) > __INT_MAX__))
@@ -36,6 +36,8 @@ static int	check_args(int argc, char *argv[])
 		j = 0;
 		i++;
 	}
+	if (ft_atol(argv[1]) < 1)
+		return (print_message_error("error: nº philos must be greater than 0"));
 	return (TRUE);
 }
 
