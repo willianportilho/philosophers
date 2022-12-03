@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 01:08:40 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/03 16:10:22 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/12/03 17:44:15 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,31 @@ static int	print_status_msg(char *status_msg, t_philo *ph)
 	return (TRUE);
 }
 
+static void	check_if_is_dead(int status, t_philo *ph)
+{
+	if (ph)
+	{
+		;
+	}
+	if (status == WAITING)
+		printf("waiting\n");
+	else if (status == EATING)
+		printf("eating\n");
+	else if (status == SLEEPING)
+		printf("sleeping\n");
+}
+
 static void	*life(void *philo)
 {
 	t_philo	*ph;
 
 	ph = (t_philo *) philo;
+	ph->relative_time = ph->data->initial_time;
+	printf("%lld\n\n", ph->relative_time);
 	while (ph->times_ate != FINISH_EAT)
 	{
-		while (ph->data->fork_is_lock[ph->fork_left] == TRUE)
-				;//check_if_is_dead(ph);
+		//while (ph->data->fork_is_lock[ph->fork_left] == TRUE)
+		//	check_if_is_dead(WAITING, ph);
 		if (pthread_mutex_lock(&ph->data->forks[ph->fork_left]) != SUCCESS)
 			return (life_error("error: pthread_mutex_lock (fork_left)"));
 		print_status_msg("has taken a fork (left)", ph);
@@ -48,6 +64,7 @@ static void	*life(void *philo)
 			return (life_error("error: pthread_mutex_lock (fork_right)"));
 		ph->data->fork_is_lock[ph->fork_right] =TRUE;
 		print_status_msg("has taken a fork (right)", ph);
+		check_if_is_dead(EATING, ph);
 		print_status_msg("is eating", ph);
 		usleep((ph->data->time_to_eat * 1000) - LAG);
 		if (pthread_mutex_unlock(&ph->data->forks[ph->fork_right]) != SUCCESS)
@@ -58,6 +75,7 @@ static void	*life(void *philo)
 		ph->data->fork_is_lock[ph->fork_left] = FALSE;
 		if (--ph->times_ate == 0)
 			return (NULL);
+		check_if_is_dead(SLEEPING, ph);
 		print_status_msg("is sleeping", ph);
 		usleep(ph->data->time_to_sleep * 1000);
 		print_status_msg("is thinking", ph);

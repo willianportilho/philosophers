@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:37:26 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/03 14:59:00 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/12/03 17:44:06 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@
 # define LIMITLESS -1
 # define FINISH_EAT 0
 # define LAG 1000
+# define WAITING 1
+# define EATING 2
+# define SLEEPING 3
 
 typedef struct s_philo
 {
@@ -33,6 +36,7 @@ typedef struct s_philo
 	int				fork_left;
 	int				fork_right;
 	int				times_ate;
+	long long		relative_time;
 	pthread_t		philo_thread;
 	struct s_data	*data;
 }					t_philo;
