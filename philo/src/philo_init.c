@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 12:56:14 by beatriz           #+#    #+#             */
-/*   Updated: 2022/12/01 19:45:14 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/12/03 15:45:12 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,12 @@ static int	init_forks(t_data *data)
 
 	i = 0;
 	data->forks = ft_calloc(data->n_philos, sizeof(pthread_mutex_t));
+	data->fork_is_lock = ft_calloc(data->n_philos, sizeof(int *));
 	if (data->forks == NULL)
 		return (print_message_error("error: init_forks allocation"));
 	while (i < data->n_philos)
 	{
+		data->fork_is_lock[i] = FALSE;
 		if (pthread_mutex_init(&data->forks[i], NULL) == -1)
 			return (print_message_error("error: pthread_mutex_init (forks)"));
 		i++;
@@ -97,6 +99,7 @@ int	init(int argc, char *argv[], t_data *data)
 {
 	data->philo_index = NULL;
 	data->forks = NULL;
+	data->fork_is_lock = NULL;
 	if (check_args(argc, argv) != TRUE)
 		return (FALSE);
 	init_data(argc, argv, data);

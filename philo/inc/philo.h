@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:37:26 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/01 19:58:58 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/12/03 14:59:00 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_data
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				n_times_eat;
+	int				*fork_is_lock;
 	long long		initial_time;
 	pthread_mutex_t	status_msg;
 	pthread_mutex_t	*forks;

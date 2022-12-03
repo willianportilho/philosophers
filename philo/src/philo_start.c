@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 01:08:40 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/01 19:59:31 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/12/03 16:10:22 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,24 @@ static void	*life(void *philo)
 	ph = (t_philo *) philo;
 	while (ph->times_ate != FINISH_EAT)
 	{
+		while (ph->data->fork_is_lock[ph->fork_left] == TRUE)
+				;//check_if_is_dead(ph);
 		if (pthread_mutex_lock(&ph->data->forks[ph->fork_left]) != SUCCESS)
 			return (life_error("error: pthread_mutex_lock (fork_left)"));
 		print_status_msg("has taken a fork (left)", ph);
+		ph->data->fork_is_lock[ph->fork_left] = TRUE;
 		if (pthread_mutex_lock(&ph->data->forks[ph->fork_right]) != SUCCESS)
 			return (life_error("error: pthread_mutex_lock (fork_right)"));
+		ph->data->fork_is_lock[ph->fork_right] =TRUE;
 		print_status_msg("has taken a fork (right)", ph);
 		print_status_msg("is eating", ph);
 		usleep((ph->data->time_to_eat * 1000) - LAG);
 		if (pthread_mutex_unlock(&ph->data->forks[ph->fork_right]) != SUCCESS)
 			return (life_error("error: pthread_mutex_unlock (fork_right)"));
+		ph->data->fork_is_lock[ph->fork_right] = FALSE;
 		if (pthread_mutex_unlock(&ph->data->forks[ph->fork_left]) != SUCCESS)
 			return (life_error("error: pthread_mutex_unlock (fork_left)"));
+		ph->data->fork_is_lock[ph->fork_left] = FALSE;
 		if (--ph->times_ate == 0)
 			return (NULL);
 		print_status_msg("is sleeping", ph);
