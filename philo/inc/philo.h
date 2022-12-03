@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:37:26 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/03 18:25:03 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/12/03 19:29:16 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_philo
 	int				fork_left;
 	int				fork_right;
 	int				times_ate;
+	long long		time_to_die_cur;
 	pthread_t		philo_thread;
 	struct s_data	*data;
 }					t_philo;
@@ -43,6 +44,7 @@ typedef struct s_philo
 typedef struct s_data
 {
 	int				i;
+	int				dead;
 	int				n_philos;
 	int				time_to_die;
 	int				time_to_eat;
@@ -61,7 +63,9 @@ void		clean(t_data *data);
 int			start(t_data *data);
 int			finish(t_data *data);
 int			print_message_error(char *message);
+int	print_status_msg(char *status_msg, t_philo *ph);
 void		*life_error(char *message);
+void		*life(void *philo);
 
 /* ---------------------------------------------------------------------*\
 |	utils																 |

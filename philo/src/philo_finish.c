@@ -6,11 +6,18 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 01:25:53 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/01 14:38:27 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/12/03 19:27:58 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
+
+void	clean(t_data *data)
+{
+	free(data->philo_index);
+	free(data->forks);
+	free(data->fork_is_lock);
+}
 
 int	finish(t_data *data)
 {
