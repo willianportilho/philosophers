@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:37:26 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/03 19:29:16 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/12/03 19:50:07 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ void		clean(t_data *data);
 int			start(t_data *data);
 int			finish(t_data *data);
 int			print_message_error(char *message);
-int	print_status_msg(char *status_msg, t_philo *ph);
-void		*life_error(char *message);
+int			print_status_msg(char *status_msg, t_philo *ph);
+int			life_error(char *message);
 void		*life(void *philo);
 
 /* ---------------------------------------------------------------------*\

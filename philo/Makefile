@@ -6,7 +6,7 @@
 #    By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 21:44:36 by wportilh          #+#    #+#              #
-#    Updated: 2022/12/03 19:28:26 by wportilh         ###   ########.fr        #
+#    Updated: 2022/12/03 20:43:47 by wportilh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,10 +60,10 @@ ${OBJ_PATH}%.o:	${SRC_PATH}%.c
 				@${CC} ${CFLAGS} -c $< -o $@
 
 val:			${NAME}
-				${VAL} ./philo 5 4 3 2 1
+				${VAL} ./philo 3 1 4 1
 
 run:			${NAME}
-				./philo 3 3 3 3
+				./philo 3 10000 30 30
 
 clean:		
 				@${RM_ALL} ${OBJ_PATH}
