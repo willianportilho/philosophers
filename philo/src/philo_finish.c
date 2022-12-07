@@ -38,6 +38,8 @@ int	finish(t_data *data)
 		i++;
 	}
 	if (pthread_mutex_destroy(&data->status_msg) != SUCCESS)
-		return (print_message_error("error: pthread_mutex_destroy (status)"));
+		return (print_message_error("error: pthread_mutex_destroy (status_msg)"));
+	if (pthread_mutex_destroy(&data->die) != SUCCESS)
+		return (print_message_error("error: pthread_mutex_destroy (die)"));
 	return (TRUE);
 }

@@ -75,7 +75,7 @@ static int	init_philo(t_data *data)
 	return (TRUE);
 }
 
-static int	init_forks(t_data *data)
+static int	init_mutexes(t_data *data)
 {
 	int	i;
 
@@ -93,6 +93,8 @@ static int	init_forks(t_data *data)
 	}
 	if (pthread_mutex_init(&data->status_msg, NULL) == -1)
 		return (print_message_error("error: pthread_mutex_init (status_msg)"));
+	if (pthread_mutex_init(&data->die, NULL) == -1)
+		return (print_message_error("error: pthread_mutex_init (die)"));
 	return (TRUE);
 }
 
@@ -106,7 +108,7 @@ int	init(int argc, char *argv[], t_data *data)
 	init_data(argc, argv, data);
 	if (init_philo(data) != TRUE)
 		return (FALSE);
-	if (init_forks(data) != TRUE)
+	if (init_mutexes(data) != TRUE)
 		return (FALSE);
 	return (TRUE);
 }

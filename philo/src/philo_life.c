@@ -14,6 +14,10 @@
 
 static void	check_if_is_dead(int status, t_philo *ph)
 {
+	if (pthread_mutex_lock(&ph->data->die) != SUCCESS)
+		return;// (life_error("error: pthread_mutex_lock (die)"));
+	if (ph->data->dead == TRUE)
+		return;
 	if ((status == WAITING) && (ph->time_to_die_cur <= current_time()))
 	{
 		ph->data->dead = TRUE;
@@ -33,6 +37,8 @@ static void	check_if_is_dead(int status, t_philo *ph)
 		ph->data->dead = TRUE;
 		print_status_msg("dead sleep", ph);
 	}
+	if (pthread_mutex_unlock(&ph->data->die) != SUCCESS)
+		return;// (life_error("error: pthread_mutex_unlock (die)"));
 }
 
 static int  takes_a_fork(int index, pthread_mutex_t *fork , t_philo *ph)

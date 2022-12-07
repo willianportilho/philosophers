@@ -52,6 +52,7 @@ typedef struct s_data
 	int				n_times_eat;
 	int				*fork_is_lock;
 	long long		initial_time;
+	pthread_mutex_t	die;
 	pthread_mutex_t	status_msg;
 	pthread_mutex_t	*forks;
 	t_philo			*philo_index;
