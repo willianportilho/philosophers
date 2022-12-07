@@ -42,7 +42,8 @@ int	start(t_data *data)
 		if (pthread_create(&data->philo_index[i].philo_thread, \
 		NULL, &life, (void *)&data->philo_index[i]) == -1)
 			return (print_message_error("error: pthread_create"));
-		usleep(LAG);
+		if ((i % 2) == 0)
+			usleep(1000);
 		i++;
 	}
 	return (TRUE);

@@ -14,18 +14,25 @@
 
 static void	check_if_is_dead(int status, t_philo *ph)
 {
-	if (status == WAITING)
+	if ((status == WAITING) && (ph->time_to_die_cur <= current_time()))
 	{
-		if (ph->time_to_die_cur <= current_time())
-		{
-			ph->data->dead = TRUE;
-			print_status_msg("dead", ph);
-		}
+		ph->data->dead = TRUE;
+		print_status_msg("dead", ph);
 	}
-	//else if (status == EATING)
-	//	printf("eating\n");
-	//else if (status == SLEEPING)
-	//	printf("sleeping\n");
+	else if ((status == EATING) &&\
+		(ph->time_to_die_cur <= (current_time() + ph->data->time_to_eat)))
+	{
+		usleep((ph->time_to_die_cur - current_time()) * 1000);
+		ph->data->dead = TRUE;
+		print_status_msg("dead eat", ph);
+	}
+	else if ((status == SLEEPING) && \
+		(ph->time_to_die_cur <= (current_time() + ph->data->time_to_sleep)))
+	{
+		usleep((ph->time_to_die_cur - current_time()) * 1000);
+		ph->data->dead = TRUE;
+		print_status_msg("dead sleep", ph);
+	}
 }
 
 static int  takes_a_fork(int index, pthread_mutex_t *fork , t_philo *ph)
@@ -57,11 +64,12 @@ void	*life(void *philo)
             return (NULL);
         if (takes_a_fork(ph->fork_right, &ph->data->forks[ph->fork_right], ph) != TRUE)
             return (NULL);
+		print_status_msg("is eating", ph);
 		check_if_is_dead(EATING, ph);
 		if (ph->data->dead == TRUE)
 				return (NULL);
-		print_status_msg("is eating", ph);
-		usleep((ph->data->time_to_eat * 1000) - LAG);
+		usleep((ph->data->time_to_eat * 1000));
+		ph->time_to_die_cur = current_time() + ph->data->time_to_die;
 		pthread_mutex_unlock(&ph->data->forks[ph->fork_right]);// != SUCCESS)
 			//return (life_error("error: pthread_mutex_unlock (fork_right)"));
 		ph->data->fork_is_lock[ph->fork_right] = FALSE;
@@ -70,10 +78,10 @@ void	*life(void *philo)
 		ph->data->fork_is_lock[ph->fork_left] = FALSE;
 		if (--ph->times_ate == 0)
 			return (NULL);
+		print_status_msg("is sleeping", ph);
+		check_if_is_dead(SLEEPING, ph);
 		if (ph->data->dead == TRUE)
 				return (NULL);
-		check_if_is_dead(SLEEPING, ph);
-		print_status_msg("is sleeping", ph);
 		usleep(ph->data->time_to_sleep * 1000);
 		if (ph->data->dead == TRUE)
 				return (NULL);
