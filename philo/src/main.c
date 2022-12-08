@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: willian <willian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:35:34 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/03 20:45:05 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/12/08 16:34:09 by willian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,7 @@ int	main(int argc, char *argv[])
 		clean(&data);
 		return (FALSE);
 	}
-	if (finish(&data) != TRUE)
-	{
-		clean(&data);
-		return (FALSE);
-	}
+	finish(&data);
+	clean(&data);
 	return (0);
 }

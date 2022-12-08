@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_finish.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: willian <willian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 01:25:53 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/03 19:27:58 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/12/08 16:48:49 by willian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	clean(t_data *data)
 {
 	free(data->philo_index);
 	free(data->forks);
-	free(data->fork_is_lock);
 }
 
 int	finish(t_data *data)
@@ -27,19 +26,17 @@ int	finish(t_data *data)
 	while (i < data->n_philos)
 	{
 		if (pthread_join(data->philo_index[i].philo_thread, NULL) != SUCCESS)
-			return (print_message_error("error: pthread_join"));
+			return (FALSE);
 		i++;
 	}
 	i = 0;
 	while (i < data->n_philos)
 	{
 		if (pthread_mutex_destroy(&data->forks[i]) != SUCCESS)
-			return (print_message_error("error: pthread_mutex_destroy (forks)"));
+			return (FALSE);
 		i++;
 	}
 	if (pthread_mutex_destroy(&data->status_msg) != SUCCESS)
-		return (print_message_error("error: pthread_mutex_destroy (status_msg)"));
-	if (pthread_mutex_destroy(&data->die) != SUCCESS)
-		return (print_message_error("error: pthread_mutex_destroy (die)"));
+		return (FALSE);
 	return (TRUE);
 }

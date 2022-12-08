@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: willian <willian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:37:26 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/03 19:50:07 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/12/08 16:52:32 by willian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,12 @@ typedef struct s_philo
 typedef struct s_data
 {
 	int				i;
-	int				dead;
 	int				n_philos;
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				n_times_eat;
-	int				*fork_is_lock;
 	long long		initial_time;
-	pthread_mutex_t	die;
 	pthread_mutex_t	status_msg;
 	pthread_mutex_t	*forks;
 	t_philo			*philo_index;
