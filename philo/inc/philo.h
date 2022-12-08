@@ -6,7 +6,7 @@
 /*   By: willian <willian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:37:26 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/08 19:09:47 by willian          ###   ########.fr       */
+/*   Updated: 2022/12/08 20:23:47 by willian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_philo
 	int				fork_right;
 	int				times_ate;
 	long long		time_to_die_cur;
+	long long		cur_time;
 	pthread_t		philo_thread;
 	struct s_data	*data;
 }					t_philo;
