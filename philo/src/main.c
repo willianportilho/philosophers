@@ -6,7 +6,7 @@
 /*   By: willian <willian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:35:34 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/08 17:44:22 by willian          ###   ########.fr       */
+/*   Updated: 2022/12/08 19:13:49 by willian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ int	main(int argc, char *argv[])
 
 	if (init(argc, argv, &data) != TRUE)
 		return (FALSE);
+	if (data.n_philos == 1)
+	{
+		start_one(&data);
+		return (TRUE);
+	}	
 	if (start(&data) != TRUE)
 		return (FALSE);
 	if (finish(&data) != TRUE)

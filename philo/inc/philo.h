@@ -6,7 +6,7 @@
 /*   By: willian <willian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:37:26 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/08 17:23:07 by willian          ###   ########.fr       */
+/*   Updated: 2022/12/08 19:09:47 by willian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ int			print_message_error(char *message);
 int			print_status_msg(char *status_msg, t_philo *ph);
 int			life_error(char *message);
 void		*life(void *philo);
+void		*life_one(void *philo);
+int			start_one(t_data *data);
 
 /* ---------------------------------------------------------------------*\
 |	utils																 |

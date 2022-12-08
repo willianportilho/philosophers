@@ -6,7 +6,7 @@
 /*   By: willian <willian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 01:08:40 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/08 18:31:56 by willian          ###   ########.fr       */
+/*   Updated: 2022/12/08 19:43:20 by willian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,21 @@ int	print_status_msg(char *status_msg, t_philo *ph)
 	return (TRUE);
 }
 
-void	*until_dead(void *dt)
+static void	*until_dead_or_eat(void *dt)
 {
 	int		i;
+	int		check_if_ate;
 	t_data	*data;
 
 	i = -1;
+	check_if_ate = 0;
 	data = (t_data *) dt;
 	while (1)
 	{
 		while (++i < data->n_philos)
 		{
+			if (data->philo_index[i].times_ate > 0)
+				check_if_ate++;
 			if (data->philo_index[i].time_to_die_cur <= current_time())
 			{
 				print_status_msg("die", &data->philo_index[i]);
@@ -49,9 +53,27 @@ void	*until_dead(void *dt)
 				return (NULL);
 			}
 		}
+		if ((check_if_ate == 0) && (data->n_times_eat != LIMITLESS))
+			return (NULL);
+		check_if_ate = 0;
 		i = -1;
 	}
 	return (NULL);
+}
+
+int	start_one(t_data *data)
+{
+	data->initial_time = current_time();
+	if (pthread_create(&data->philo_index[0].philo_thread, \
+		NULL, &life_one, (void *)&data->philo_index[0]) == -1)
+		return (FALSE);
+	if (pthread_join(data->philo_index[0].philo_thread, NULL) != SUCCESS)
+			return (FALSE);
+	if (pthread_mutex_destroy(&data->forks[0]) != SUCCESS)
+		return (FALSE);
+	if (pthread_mutex_destroy(&data->status_msg) != SUCCESS)
+		return (FALSE);
+	return (TRUE);
 }
 
 int	start(t_data *data)
@@ -69,8 +91,7 @@ int	start(t_data *data)
 			usleep(50);
 		i++;
 	}
-	usleep(1000);
-	if (pthread_create(&data->check, NULL, &until_dead, (void *)data) == -1)
+	if (pthread_create(&data->check, NULL, &until_dead_or_eat, (void *)data) == -1)
 		return (FALSE);
 	return (TRUE);
 }

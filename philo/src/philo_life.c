@@ -6,7 +6,7 @@
 /*   By: willian <willian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 19:24:43 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/08 18:36:30 by willian          ###   ########.fr       */
+/*   Updated: 2022/12/08 19:29:24 by willian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,26 @@ void	*life(void *philo)
 		if (ph->data->die == TRUE)
 			return (FALSE);
 		print_status_msg("is thinking", ph);
+	}
+	return (NULL);
+}
+
+void	*life_one(void *philo)
+{
+	t_philo	*ph;
+
+	ph = (t_philo *) philo;
+	ph->time_to_die_cur = ph->data->initial_time + ph->data->time_to_die;
+	if (take_a_fork(&ph->data->forks[ph->fork_right], ph) != TRUE)
+            return (drop_a_fork(&ph->data->forks[ph->fork_right]), NULL);
+	while (1)
+	{
+		if (ph->time_to_die_cur <= current_time())
+		{
+			drop_a_fork(&ph->data->forks[ph->fork_right]);
+			print_status_msg("die", ph);
+			return(NULL);
+		}
 	}
 	return (NULL);
 }
