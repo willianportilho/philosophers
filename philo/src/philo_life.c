@@ -12,6 +12,17 @@
 
 #include "../inc/philo.h"
 
+
+static int	drops_a_fork(t_philo *ph)
+{
+	if (pthread_mutex_unlock(&ph->data->forks[ph->fork_left]) != SUCCESS)
+		return (life_error("error: pthread_mutex_unlock (fork_left)"));
+	ph->data->fork_is_lock[ph->fork_left] = FALSE;
+	if (pthread_mutex_unlock(&ph->data->forks[ph->fork_right]) != SUCCESS)
+		return (life_error("error: pthread_mutex_unlock (fork_right)"));
+	ph->data->fork_is_lock[ph->fork_right] = FALSE;
+	return (TRUE);
+}
 static void	check_if_is_dead(int status, t_philo *ph)
 {
 	if (pthread_mutex_lock(&ph->data->die) != SUCCESS)
@@ -73,15 +84,10 @@ void	*life(void *philo)
 		print_status_msg("is eating", ph);
 		check_if_is_dead(EATING, ph);
 		if (ph->data->dead == TRUE)
-				return (NULL);
+			return (NULL);
 		usleep((ph->data->time_to_eat * 1000));
 		ph->time_to_die_cur = current_time() + ph->data->time_to_die;
-		pthread_mutex_unlock(&ph->data->forks[ph->fork_right]);// != SUCCESS)
-			//return (life_error("error: pthread_mutex_unlock (fork_right)"));
-		ph->data->fork_is_lock[ph->fork_right] = FALSE;
-		pthread_mutex_unlock(&ph->data->forks[ph->fork_left]);// != SUCCESS)
-			//return (life_error("error: pthread_mutex_unlock (fork_left)"));
-		ph->data->fork_is_lock[ph->fork_left] = FALSE;
+		drops_a_fork(ph);
 		if (--ph->times_ate == 0)
 			return (NULL);
 		print_status_msg("is sleeping", ph);
