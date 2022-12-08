@@ -6,7 +6,7 @@
 /*   By: willian <willian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 01:25:53 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/08 16:48:49 by willian          ###   ########.fr       */
+/*   Updated: 2022/12/08 17:51:57 by willian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	finish(t_data *data)
 	int	i;
 
 	i = 0;
+	if (pthread_join(data->check, NULL) != SUCCESS)
+			return (FALSE);
 	while (i < data->n_philos)
 	{
 		if (pthread_join(data->philo_index[i].philo_thread, NULL) != SUCCESS)

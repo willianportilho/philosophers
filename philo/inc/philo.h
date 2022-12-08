@@ -6,7 +6,7 @@
 /*   By: willian <willian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:37:26 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/08 16:52:32 by willian          ###   ########.fr       */
+/*   Updated: 2022/12/08 17:23:07 by willian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@
 # define LIMITLESS -1
 # define FINISH_EAT 0
 # define LAG 10000
-# define WAITING 1
-# define EATING 2
-# define SLEEPING 3
 
 typedef struct s_philo
 {
@@ -44,12 +41,14 @@ typedef struct s_philo
 typedef struct s_data
 {
 	int				i;
+	int				die;
 	int				n_philos;
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				n_times_eat;
 	long long		initial_time;
+	pthread_t		check;
 	pthread_mutex_t	status_msg;
 	pthread_mutex_t	*forks;
 	t_philo			*philo_index;

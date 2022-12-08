@@ -6,7 +6,7 @@
 /*   By: willian <willian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:35:34 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/08 16:34:09 by willian          ###   ########.fr       */
+/*   Updated: 2022/12/08 17:44:22 by willian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,11 @@ int	main(int argc, char *argv[])
 	t_data		data;
 
 	if (init(argc, argv, &data) != TRUE)
-	{
-		clean(&data);
 		return (FALSE);
-	}
 	if (start(&data) != TRUE)
-	{
-		clean(&data);
 		return (FALSE);
-	}
-	finish(&data);
+	if (finish(&data) != TRUE)
+		return (FALSE);
 	clean(&data);
 	return (0);
 }

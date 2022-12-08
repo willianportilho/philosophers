@@ -6,7 +6,7 @@
 /*   By: willian <willian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 12:56:14 by beatriz           #+#    #+#             */
-/*   Updated: 2022/12/08 16:47:06 by willian          ###   ########.fr       */
+/*   Updated: 2022/12/08 17:47:15 by willian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static void	init_data(int argc, char *argv[], t_data *data)
 	data->n_times_eat = LIMITLESS;
 	if (argc == 6)
 		data->n_times_eat = ft_atol(argv[5]);
+	data->die = FALSE;
 }
 
 static int	init_philo(t_data *data)
