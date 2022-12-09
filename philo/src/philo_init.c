@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willian <willian@student.42.fr>            +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 12:56:14 by beatriz           #+#    #+#             */
-/*   Updated: 2022/12/09 15:42:59 by willian          ###   ########.fr       */
+/*   Updated: 2022/12/09 23:19:32 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ static int	check_args(int argc, char *argv[])
 			j++;
 		}
 		if ((ft_strlen(argv[i]) > 10) || (ft_atol(argv[i]) > __INT_MAX__))
-			return (print_message_error("error: number(s) greater than MAX_INT"));
+			return (print_message_error("error: number(s) exceed MAX_INT"));
 		if (ft_atol(argv[i]) < 1)
-			return (print_message_error("error: all arguments must be greater than 0"));
+			return (print_message_error("error: Put values greater than 0"));
 		j = 0;
 	}
 	return (TRUE);
@@ -79,7 +79,7 @@ static int	init_mutexes(t_data *data)
 {
 	int	i;
 
-	i = 0;
+	i = -1;
 	data->forks = ft_calloc(data->n_philos, sizeof(pthread_mutex_t));
 	if (data->forks == NULL)
 		return (print_message_error("error: init_forks allocation"));
@@ -89,7 +89,7 @@ static int	init_mutexes(t_data *data)
 	data->times_ate = ft_calloc(data->n_philos, sizeof(pthread_mutex_t));
 	if (data->times_ate == NULL)
 		return (print_message_error("error: init_forks allocation"));
-	while (i < data->n_philos)
+	while (++i < data->n_philos)
 	{
 		if (pthread_mutex_init(&data->forks[i], NULL) == -1)
 			return (FALSE);
@@ -97,7 +97,6 @@ static int	init_mutexes(t_data *data)
 			return (FALSE);
 		if (pthread_mutex_init(&data->times_ate[i], NULL) == -1)
 			return (FALSE);
-		i++;
 	}
 	if (pthread_mutex_init(&data->status_msg, NULL) == -1)
 		return (FALSE);

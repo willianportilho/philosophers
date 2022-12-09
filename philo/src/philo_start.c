@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_start.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willian <willian@student.42.fr>            +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 01:08:40 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/09 18:58:50 by willian          ###   ########.fr       */
+/*   Updated: 2022/12/09 23:16:13 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	start_one(t_data *data)
 		NULL, &life_one, (void *)&data->philo_index[0]) == -1)
 		return (FALSE);
 	if (pthread_join(data->philo_index[0].philo_thread, NULL) != SUCCESS)
-			return (FALSE);
+		return (FALSE);
 	if (pthread_mutex_destroy(&data->forks[0]) != SUCCESS)
 		return (FALSE);
 	if (pthread_mutex_destroy(&data->status_msg) != SUCCESS)
@@ -93,9 +93,11 @@ int	start(t_data *data)
 	{
 		pthread_mutex_lock(&data->time_to_die_cur[i]);
 		if ((i % 2) == 0)
-			data->philo_index[i].time_to_die_cur = data->initial_time + data->time_to_die + 1000;
+			data->philo_index[i].time_to_die_cur = \
+			data->initial_time + data->time_to_die + 1000;
 		else
-			data->philo_index[i].time_to_die_cur = data->initial_time + data->time_to_die;
+			data->philo_index[i].time_to_die_cur = \
+			data->initial_time + data->time_to_die;
 		pthread_mutex_unlock(&data->time_to_die_cur[i]);
 		if (pthread_create(&data->philo_index[i].philo_thread, \
 		NULL, &life, (void *)&data->philo_index[i]) == -1)
@@ -104,7 +106,8 @@ int	start(t_data *data)
 			usleep(1000);
 		i++;
 	}
-	if (pthread_create(&data->check, NULL, &until_dead_or_eat, (void *)data) == -1)
+	if (pthread_create(&data->check, NULL, \
+	&until_dead_or_eat, (void *)data) == -1)
 		return (FALSE);
 	return (TRUE);
 }
