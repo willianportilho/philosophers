@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willian <willian@student.42.fr>            +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:37:26 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/09 15:42:13 by willian          ###   ########.fr       */
+/*   Updated: 2022/12/09 23:43:02 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,14 @@ typedef struct s_data
 long long	current_time(void);
 int			init(int argc, char *argv[], t_data *data);
 void		clean(t_data *data);
-int			start(t_data *data);
-int			finish(t_data *data);
+void		start(t_data *data);
+void		finish(t_data *data);
 int			print_message_error(char *message);
-int			print_status_msg(char *status_msg, t_philo *ph);
+void		print_status_msg(char *status_msg, t_philo *ph);
 int			life_error(char *message);
 void		*life(void *philo);
 void		*life_one(void *philo);
-int			start_one(t_data *data);
+void		start_one(t_data *data);
 
 /* ---------------------------------------------------------------------*\
 |	utils																 |

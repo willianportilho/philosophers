@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willian <willian@student.42.fr>            +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:35:34 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/08 19:13:49 by willian          ###   ########.fr       */
+/*   Updated: 2022/12/09 23:43:15 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,8 @@ int	main(int argc, char *argv[])
 		start_one(&data);
 		return (TRUE);
 	}	
-	if (start(&data) != TRUE)
-		return (FALSE);
-	if (finish(&data) != TRUE)
-		return (FALSE);
+	start(&data);
+	finish(&data);
 	clean(&data);
 	return (0);
 }

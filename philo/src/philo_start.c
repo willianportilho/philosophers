@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 01:08:40 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/09 23:16:13 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/12/09 23:42:47 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,12 @@ long long	current_time(void)
 	return ((time.tv_usec / 1000) + (time.tv_sec * 1000));
 }
 
-int	print_status_msg(char *status_msg, t_philo *ph)
+void	print_status_msg(char *status_msg, t_philo *ph)
 {
-	if (pthread_mutex_lock(&ph->data->status_msg) != SUCCESS)
-		return (FALSE);
+	pthread_mutex_lock(&ph->data->status_msg);
 	printf("%lld philo %d %s\n", \
 	(current_time() - ph->data->initial_time), ph->id, status_msg);
-	if (pthread_mutex_unlock(&ph->data->status_msg) != SUCCESS)
-		return (FALSE);
-	return (TRUE);
+	pthread_mutex_unlock(&ph->data->status_msg);
 }
 
 static void	*until_dead_or_eat(void *dt)
@@ -68,22 +65,17 @@ static void	*until_dead_or_eat(void *dt)
 	return (NULL);
 }
 
-int	start_one(t_data *data)
+void	start_one(t_data *data)
 {
 	data->initial_time = current_time();
-	if (pthread_create(&data->philo_index[0].philo_thread, \
-		NULL, &life_one, (void *)&data->philo_index[0]) == -1)
-		return (FALSE);
-	if (pthread_join(data->philo_index[0].philo_thread, NULL) != SUCCESS)
-		return (FALSE);
-	if (pthread_mutex_destroy(&data->forks[0]) != SUCCESS)
-		return (FALSE);
-	if (pthread_mutex_destroy(&data->status_msg) != SUCCESS)
-		return (FALSE);
-	return (TRUE);
+	pthread_create(&data->philo_index[0].philo_thread, NULL, \
+		&life_one, (void *)&data->philo_index[0]);
+	pthread_join(data->philo_index[0].philo_thread, NULL);
+	pthread_mutex_destroy(&data->forks[0]);
+	pthread_mutex_destroy(&data->status_msg);
 }
 
-int	start(t_data *data)
+void	start(t_data *data)
 {
 	int	i;
 
@@ -99,15 +91,12 @@ int	start(t_data *data)
 			data->philo_index[i].time_to_die_cur = \
 			data->initial_time + data->time_to_die;
 		pthread_mutex_unlock(&data->time_to_die_cur[i]);
-		if (pthread_create(&data->philo_index[i].philo_thread, \
-		NULL, &life, (void *)&data->philo_index[i]) == -1)
-			return (FALSE);
+		pthread_create(&data->philo_index[i].philo_thread, NULL, \
+			&life, (void *)&data->philo_index[i]);
 		if ((i % 2) == 0)
 			usleep(1000);
 		i++;
 	}
-	if (pthread_create(&data->check, NULL, \
-	&until_dead_or_eat, (void *)data) == -1)
-		return (FALSE);
-	return (TRUE);
+	pthread_create(&data->check, NULL, \
+		&until_dead_or_eat, (void *)data);
 }

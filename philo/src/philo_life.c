@@ -6,23 +6,20 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 19:24:43 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/09 23:14:24 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/12/09 23:36:29 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
-static int	drop_a_fork(pthread_mutex_t *fork)
+static void	drop_a_fork(pthread_mutex_t *fork)
 {
-	if (pthread_mutex_unlock(fork) != SUCCESS)
-		return (FALSE);
-	return (TRUE);
+	pthread_mutex_unlock(fork);
 }
 
 static int	take_a_fork(pthread_mutex_t *fork, t_philo *ph)
 {
-	if (pthread_mutex_lock(fork) != SUCCESS)
-		return (FALSE);
+	pthread_mutex_lock(fork);
 	pthread_mutex_lock(&ph->data->die_mutex);
 	if (ph->data->die == TRUE)
 	{
@@ -65,10 +62,8 @@ void	*life(void *philo)
 		pthread_mutex_lock(&ph->data->time_to_die_cur[ph->id - 1]);
 		ph->time_to_die_cur = current_time() + ph->data->time_to_die;
 		pthread_mutex_unlock(&ph->data->time_to_die_cur[ph->id - 1]);
-		if (drop_a_fork(&ph->data->forks[ph->fork_left]) != TRUE)
-			return (NULL);
-		if (drop_a_fork(&ph->data->forks[ph->fork_right]) != TRUE)
-			return (NULL);
+		drop_a_fork(&ph->data->forks[ph->fork_left]);
+		drop_a_fork(&ph->data->forks[ph->fork_right]);
 		pthread_mutex_lock(&ph->data->times_ate[ph->id - 1]);
 		if (--ph->times_ate == 0)
 		{
