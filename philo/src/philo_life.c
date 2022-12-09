@@ -6,7 +6,7 @@
 /*   By: willian <willian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 19:24:43 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/09 15:54:00 by willian          ###   ########.fr       */
+/*   Updated: 2022/12/09 18:57:16 by willian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,6 @@ void	*life(void *philo)
 	t_philo	*ph;
 
 	ph = (t_philo *) philo;
-	pthread_mutex_lock(&ph->data->time_to_die_cur[ph->id - 1]);
-	ph->time_to_die_cur = ph->data->initial_time + ph->data->time_to_die;
-	pthread_mutex_unlock(&ph->data->time_to_die_cur[ph->id - 1]);
 	while ((pthread_mutex_lock(&ph->data->times_ate[ph->id - 1]) == 0) \
 	&& (ph->times_ate != FINISH_EAT))
 	{
@@ -55,10 +52,7 @@ void	*life(void *philo)
             return (NULL);
 		}
 		print_status_msg("is eating", ph);
-		if (((ph->id - 1) % 2) == 0)
-			usleep((ph->data->time_to_eat * 1000) - 50);
-		else
-			usleep(ph->data->time_to_eat * 1000);
+		usleep(ph->data->time_to_eat * 1000);
 		pthread_mutex_lock(&ph->data->die_mutex);
 		if (ph->data->die == TRUE)
 		{

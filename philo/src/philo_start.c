@@ -6,7 +6,7 @@
 /*   By: willian <willian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 01:08:40 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/09 15:49:19 by willian          ###   ########.fr       */
+/*   Updated: 2022/12/09 18:58:50 by willian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,14 +91,19 @@ int	start(t_data *data)
 	data->initial_time = current_time();
 	while (i < data->n_philos)
 	{
+		pthread_mutex_lock(&data->time_to_die_cur[i]);
+		if ((i % 2) == 0)
+			data->philo_index[i].time_to_die_cur = data->initial_time + data->time_to_die + 1000;
+		else
+			data->philo_index[i].time_to_die_cur = data->initial_time + data->time_to_die;
+		pthread_mutex_unlock(&data->time_to_die_cur[i]);
 		if (pthread_create(&data->philo_index[i].philo_thread, \
 		NULL, &life, (void *)&data->philo_index[i]) == -1)
 			return (FALSE);
 		if ((i % 2) == 0)
-			usleep(50);
+			usleep(1000);
 		i++;
 	}
-	usleep(10);
 	if (pthread_create(&data->check, NULL, &until_dead_or_eat, (void *)data) == -1)
 		return (FALSE);
 	return (TRUE);
