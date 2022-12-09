@@ -6,7 +6,7 @@
 /*   By: willian <willian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 01:08:40 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/08 20:27:23 by willian          ###   ########.fr       */
+/*   Updated: 2022/12/08 21:08:48 by willian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	print_status_msg(char *status_msg, t_philo *ph)
 	if (pthread_mutex_lock(&ph->data->status_msg) != SUCCESS)
 		return (FALSE);
 	printf("%lld philo %d %s\n", \
-	(ph->cur_time - ph->data->initial_time), ph->id, status_msg);
+	(current_time() - ph->data->initial_time), ph->id, status_msg);
 	if (pthread_mutex_unlock(&ph->data->status_msg) != SUCCESS)
 		return (FALSE);
 	return (TRUE);
@@ -46,7 +46,6 @@ static void	*until_dead_or_eat(void *dt)
 		{
 			if (data->philo_index[i].time_to_die_cur <= current_time())
 			{
-				data->philo_index[i].cur_time = current_time();
 				print_status_msg("die", &data->philo_index[i]);
 				data->die = TRUE;
 				return (NULL);

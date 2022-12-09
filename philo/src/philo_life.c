@@ -6,7 +6,7 @@
 /*   By: willian <willian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 19:24:43 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/08 20:25:16 by willian          ###   ########.fr       */
+/*   Updated: 2022/12/08 21:09:23 by willian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static int  take_a_fork(pthread_mutex_t *fork, t_philo *ph)
 		return (FALSE);
 	if (ph->data->die == TRUE)
 		return (FALSE);
-	ph->cur_time = current_time();
 	print_status_msg("has taken a fork", ph);
     return (TRUE);
 }
@@ -46,7 +45,6 @@ void	*life(void *philo)
 			drop_a_fork(&ph->data->forks[ph->fork_right]);
             return (NULL);
 		}
-		ph->cur_time = current_time();
 		print_status_msg("is eating", ph);
 		if (((ph->id - 1) % 2) == 0)
 			usleep((ph->data->time_to_eat * 1000) - 50);
@@ -65,12 +63,10 @@ void	*life(void *philo)
 			return (NULL);
 		if (--ph->times_ate == 0)
 			return (NULL);
-		ph->cur_time = current_time();
 		print_status_msg("is sleeping", ph);
 		usleep(ph->data->time_to_sleep * 1000);
 		if (ph->data->die == TRUE)
 			return (FALSE);
-		ph->cur_time = current_time();
 		print_status_msg("is thinking", ph);
 	}
 	return (NULL);
@@ -88,7 +84,6 @@ void	*life_one(void *philo)
 	{
 		if (ph->time_to_die_cur <= current_time())
 		{
-			ph->cur_time = current_time();
 			drop_a_fork(&ph->data->forks[ph->fork_right]);
 			print_status_msg("die", ph);
 			return(NULL);

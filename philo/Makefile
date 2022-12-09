@@ -6,7 +6,7 @@
 #    By: willian <willian@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 21:44:36 by wportilh          #+#    #+#              #
-#    Updated: 2022/12/08 18:37:16 by willian          ###   ########.fr        #
+#    Updated: 2022/12/08 21:19:07 by willian          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,10 @@ RM =			rm -f
 RM_ALL =		rm -rf
 
 VAL =			valgrind --leak-check=full --show-leak-kinds=all
+
+HELL =			valgrind --tool=helgrind
+
+DRD =			valgrind --tool=drd
 
 INC =			./inc
 
@@ -61,6 +65,12 @@ ${OBJ_PATH}%.o:	${SRC_PATH}%.c
 
 val:			${NAME}
 				${VAL} ./philo 2 100 200 100 1
+
+hell:			${NAME}
+				${HELL} ./philo 2 100 200 100 1
+
+drd:			${NAME}
+				${DRD} ./philo 2 100 200 100 1
 
 run:			${NAME}
 				./philo 13 10000 30 30
