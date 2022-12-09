@@ -6,7 +6,7 @@
 /*   By: willian <willian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 12:56:14 by beatriz           #+#    #+#             */
-/*   Updated: 2022/12/08 17:47:15 by willian          ###   ########.fr       */
+/*   Updated: 2022/12/09 15:42:59 by willian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,25 @@ static int	init_mutexes(t_data *data)
 	data->forks = ft_calloc(data->n_philos, sizeof(pthread_mutex_t));
 	if (data->forks == NULL)
 		return (print_message_error("error: init_forks allocation"));
+	data->time_to_die_cur = ft_calloc(data->n_philos, sizeof(pthread_mutex_t));
+	if (data->time_to_die_cur == NULL)
+		return (print_message_error("error: init_forks allocation"));
+	data->times_ate = ft_calloc(data->n_philos, sizeof(pthread_mutex_t));
+	if (data->times_ate == NULL)
+		return (print_message_error("error: init_forks allocation"));
 	while (i < data->n_philos)
 	{
 		if (pthread_mutex_init(&data->forks[i], NULL) == -1)
 			return (FALSE);
+		if (pthread_mutex_init(&data->time_to_die_cur[i], NULL) == -1)
+			return (FALSE);
+		if (pthread_mutex_init(&data->times_ate[i], NULL) == -1)
+			return (FALSE);
 		i++;
 	}
 	if (pthread_mutex_init(&data->status_msg, NULL) == -1)
+		return (FALSE);
+	if (pthread_mutex_init(&data->die_mutex, NULL) == -1)
 		return (FALSE);
 	return (TRUE);
 }

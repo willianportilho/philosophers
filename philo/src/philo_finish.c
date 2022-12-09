@@ -6,7 +6,7 @@
 /*   By: willian <willian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 01:25:53 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/08 17:51:57 by willian          ###   ########.fr       */
+/*   Updated: 2022/12/09 15:43:51 by willian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	clean(t_data *data)
 {
 	free(data->philo_index);
 	free(data->forks);
+	free(data->time_to_die_cur);
+	free(data->times_ate);
 }
 
 int	finish(t_data *data)
@@ -36,9 +38,15 @@ int	finish(t_data *data)
 	{
 		if (pthread_mutex_destroy(&data->forks[i]) != SUCCESS)
 			return (FALSE);
+		if (pthread_mutex_destroy(&data->time_to_die_cur[i]) != SUCCESS)
+			return (FALSE);
+		if (pthread_mutex_destroy(&data->times_ate[i]) != SUCCESS)
+			return (FALSE);
 		i++;
 	}
 	if (pthread_mutex_destroy(&data->status_msg) != SUCCESS)
+		return (FALSE);
+	if (pthread_mutex_destroy(&data->die_mutex) != SUCCESS)
 		return (FALSE);
 	return (TRUE);
 }

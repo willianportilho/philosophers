@@ -6,7 +6,7 @@
 /*   By: willian <willian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:37:26 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/08 21:08:35 by willian          ###   ########.fr       */
+/*   Updated: 2022/12/09 15:42:13 by willian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,10 @@ typedef struct s_data
 	int				n_times_eat;
 	long long		initial_time;
 	pthread_t		check;
+	pthread_mutex_t	die_mutex;
 	pthread_mutex_t	status_msg;
+	pthread_mutex_t	*time_to_die_cur;
+	pthread_mutex_t	*times_ate;
 	pthread_mutex_t	*forks;
 	t_philo			*philo_index;
 }					t_data;

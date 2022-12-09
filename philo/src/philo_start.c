@@ -6,7 +6,7 @@
 /*   By: willian <willian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 01:08:40 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/08 21:08:48 by willian          ###   ########.fr       */
+/*   Updated: 2022/12/09 15:49:19 by willian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,21 @@ static void	*until_dead_or_eat(void *dt)
 	{
 		while (++i < data->n_philos)
 		{
+			pthread_mutex_lock(&data->time_to_die_cur[i]);
 			if (data->philo_index[i].time_to_die_cur <= current_time())
 			{
+				pthread_mutex_unlock(&data->time_to_die_cur[i]);
 				print_status_msg("die", &data->philo_index[i]);
+				pthread_mutex_lock(&data->die_mutex);
 				data->die = TRUE;
+				pthread_mutex_unlock(&data->die_mutex);
 				return (NULL);
 			}
+			pthread_mutex_unlock(&data->time_to_die_cur[i]);
+			pthread_mutex_lock(&data->times_ate[i]);
 			if (data->philo_index[i].times_ate > 0)
 				check_if_ate++;
+			pthread_mutex_unlock(&data->times_ate[i]);
 		}
 		if ((check_if_ate == 0) && (data->n_times_eat != LIMITLESS))
 			return (NULL);

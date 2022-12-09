@@ -6,7 +6,7 @@
 #    By: willian <willian@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 21:44:36 by wportilh          #+#    #+#              #
-#    Updated: 2022/12/08 21:19:07 by willian          ###   ########.fr        #
+#    Updated: 2022/12/09 17:03:02 by willian          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,10 +64,10 @@ ${OBJ_PATH}%.o:	${SRC_PATH}%.c
 				@${CC} ${CFLAGS} -c $< -o $@
 
 val:			${NAME}
-				${VAL} ./philo 2 100 200 100 1
+				${VAL} ./philo 13 1000 200 100 1
 
 hell:			${NAME}
-				${HELL} ./philo 2 100 200 100 1
+				${HELL} ./philo 13 1000 200 100 1
 
 drd:			${NAME}
 				${DRD} ./philo 2 100 200 100 1
