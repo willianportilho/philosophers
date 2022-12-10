@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   5_life.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willian <willian@student.42.fr>            +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 19:24:43 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/10 00:26:53 by willian          ###   ########.fr       */
+/*   Updated: 2022/12/10 23:37:38 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ void	*life(void *philo)
 	t_philo	*ph;
 
 	ph = (t_philo *) philo;
+	if (((ph->id - 1) % 2) == 0)
+		usleep(1000);
 	while ((pthread_mutex_lock(&ph->data->times_ate[ph->id - 1]) == 0) \
 	&& (ph->times_ate != FINISH_EAT))
 	{
