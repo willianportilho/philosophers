@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   4_more_than_one_philo.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willian <willian@student.42.fr>            +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 01:08:40 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/10 00:19:55 by willian          ###   ########.fr       */
+/*   Updated: 2022/12/10 23:07:49 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static void	*until_dead_or_eat(void *dt)
 	data = (t_data *) dt;
 	while (1)
 	{
+		usleep(10);
 		if (check_philos(data) != TRUE)
 			return (NULL);
 		if ((data->check_if_ate == 0) && (data->n_times_eat != LIMITLESS))

@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 01:48:22 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/10 02:59:51 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/12/10 23:07:56 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void	*life_one(void *philo)
 	print_status_msg("has taken a fork", ph);
 	while (1)
 	{
+		usleep(10);
 		if (ph->time_to_die_cur < current_time())
 		{
 			pthread_mutex_unlock(&ph->data->forks[ph->fork_right]);
