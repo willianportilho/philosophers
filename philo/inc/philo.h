@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:37:26 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/09 23:43:02 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/12/10 00:03:34 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_data
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				n_times_eat;
+	int				check_if_ate;
 	long long		initial_time;
 	pthread_t		check;
 	pthread_mutex_t	die_mutex;

@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: willian <willian@student.42.fr>            +#+  +:+       +#+         #
+#    By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 21:44:36 by wportilh          #+#    #+#              #
-#    Updated: 2022/12/09 17:03:02 by willian          ###   ########.fr        #
+#    Updated: 2022/12/10 01:51:50 by wportilh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SOURCES =		main.c philo_utils.c philo_init.c philo_life.c \
-				philo_start.c philo_finish.c philo_error.c
+SOURCES =		main.c philo_utils.c philo_lib.c philo_init.c philo_life.c \
+				philo_start.c philo_finish.c philo_life_one.c
 
 NAME =			philo
 
