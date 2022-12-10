@@ -6,7 +6,7 @@
 #    By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 21:44:36 by wportilh          #+#    #+#              #
-#    Updated: 2022/12/10 03:03:48 by wportilh         ###   ########.fr        #
+#    Updated: 2022/12/10 03:17:33 by wportilh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,6 +93,6 @@ re:				fclean all
 				@echo "--------------------------${RESET}"
 
 norm:
-				norminette ${SRCS} ${INC}
+				norminette ${SRCS}
 
 .PHONY:			all clean fclean re norm val hell drd
