@@ -6,7 +6,7 @@
 #    By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 21:44:36 by wportilh          #+#    #+#              #
-#    Updated: 2022/12/10 02:55:35 by wportilh         ###   ########.fr        #
+#    Updated: 2022/12/10 03:03:48 by wportilh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,13 +27,13 @@ HELL =			valgrind --tool=helgrind
 
 DRD =			valgrind --tool=drd
 
-INC =			inc
+INC =			./
 
-SRC_PATH =		src/
+SRC_PATH =		./
 
 OBJ_PATH =		obj/
 
-SRCS =			src/
+SRCS =			./
 
 OBJS =			${addprefix ${OBJ_PATH}, ${SOURCES:.c=.o}}
 
