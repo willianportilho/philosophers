@@ -6,7 +6,7 @@
 /*   By: willian <willian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 01:08:40 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/09 23:13:17 by willian          ###   ########.fr       */
+/*   Updated: 2022/12/10 00:19:55 by willian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,12 @@ static int	check_philos(t_data *data)
 		if (data->philo_index[i].time_to_die_cur < current_time())
 		{
 			pthread_mutex_unlock(&data->time_to_die_cur[i]);
-			print_status_msg("die", &data->philo_index[i]);
+			if (print_status_msg("die", &data->philo_index[i]) != TRUE)
+				return (FALSE);
 			pthread_mutex_lock(&data->die_mutex);
 			data->die = TRUE;
 			pthread_mutex_unlock(&data->die_mutex);
-			return (TRUE);
+			return (FALSE);
 		}
 		pthread_mutex_unlock(&data->time_to_die_cur[i]);
 		pthread_mutex_lock(&data->times_ate[i]);
@@ -35,7 +36,7 @@ static int	check_philos(t_data *data)
 			data->check_if_ate++;
 		pthread_mutex_unlock(&data->times_ate[i]);
 	}
-	return (FALSE);
+	return (TRUE);
 }
 
 static void	*until_dead_or_eat(void *dt)
@@ -45,7 +46,7 @@ static void	*until_dead_or_eat(void *dt)
 	data = (t_data *) dt;
 	while (1)
 	{
-		if (check_philos(data) == TRUE)
+		if (check_philos(data) != TRUE)
 			return (NULL);
 		if ((data->check_if_ate == 0) && (data->n_times_eat != LIMITLESS))
 			return (NULL);

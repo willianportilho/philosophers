@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: willian <willian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:37:26 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/10 02:33:51 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/12/10 00:03:59 by willian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void		start_one_philo(t_data *data);
 |	utils																 |
 \* ---------------------------------------------------------------------*/
 int			print_message_error(char *message);
-void		print_status_msg(char *status_msg, t_philo *ph);
+int			print_status_msg(char *status_msg, t_philo *ph);
 void		clean(t_data *data);
 long long	current_time(void);
 

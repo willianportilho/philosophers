@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   5_life.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: willian <willian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 19:24:43 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/10 03:00:00 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/12/10 00:26:53 by willian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,29 +18,43 @@ static int	take_forks(t_philo *ph)
 	pthread_mutex_lock(&ph->data->die_mutex);
 	if (ph->data->die == TRUE)
 	{
-		pthread_mutex_unlock(&ph->data->die_mutex);
 		pthread_mutex_unlock(&ph->data->forks[ph->fork_left]);
+		pthread_mutex_unlock(&ph->data->die_mutex);
 		return (FALSE);
 	}
 	pthread_mutex_unlock(&ph->data->die_mutex);
-	print_status_msg("has taken a fork", ph);
+	if (print_status_msg("has taken a fork", ph) != TRUE)
+	{
+		pthread_mutex_unlock(&ph->data->forks[ph->fork_left]);
+		return (FALSE);
+	}
 	pthread_mutex_lock(&ph->data->forks[ph->fork_right]);
 	pthread_mutex_lock(&ph->data->die_mutex);
 	if (ph->data->die == TRUE)
 	{
+		pthread_mutex_unlock(&ph->data->forks[ph->fork_left]);
+		pthread_mutex_unlock(&ph->data->forks[ph->fork_right]);
 		pthread_mutex_unlock(&ph->data->die_mutex);
+		return (FALSE);
+	}
+	pthread_mutex_unlock(&ph->data->die_mutex);
+	if (print_status_msg("has taken a fork", ph) != TRUE)
+	{
 		pthread_mutex_unlock(&ph->data->forks[ph->fork_left]);
 		pthread_mutex_unlock(&ph->data->forks[ph->fork_right]);
 		return (FALSE);
 	}
-	pthread_mutex_unlock(&ph->data->die_mutex);
-	print_status_msg("has taken a fork", ph);
 	return (TRUE);
 }
 
 static int	philo_eat(t_philo *ph)
 {
-	print_status_msg("is eating", ph);
+	if (print_status_msg("is eating", ph) != TRUE)
+	{
+		pthread_mutex_unlock(&ph->data->forks[ph->fork_left]);
+		pthread_mutex_unlock(&ph->data->forks[ph->fork_right]);
+		return (FALSE);
+	}
 	usleep(ph->data->time_to_eat * 1000);
 	pthread_mutex_lock(&ph->data->die_mutex);
 	if (ph->data->die == TRUE)
@@ -66,22 +80,26 @@ static int	philo_eat(t_philo *ph)
 	return (TRUE);
 }
 
-static void	philo_sleep(t_philo *ph)
+static int	philo_sleep(t_philo *ph)
 {
-	print_status_msg("is sleeping", ph);
+	if (print_status_msg("is sleeping", ph) != TRUE)
+		return (FALSE);
 	usleep(ph->data->time_to_sleep * 1000);
 	pthread_mutex_lock(&ph->data->die_mutex);
 	if (ph->data->die == TRUE)
 	{
 		pthread_mutex_unlock(&ph->data->die_mutex);
-		return ;
+		return (FALSE);
 	}
 	pthread_mutex_unlock(&ph->data->die_mutex);
+	return (TRUE);
 }
 
-static void	philo_think(t_philo *ph)
+static int	philo_think(t_philo *ph)
 {
-	print_status_msg("is thinking", ph);
+	if (print_status_msg("is thinking", ph) != TRUE)
+		return (FALSE);
+	return (TRUE);
 }
 
 void	*life(void *philo)
@@ -97,8 +115,10 @@ void	*life(void *philo)
 			return (NULL);
 		if (philo_eat(ph) != TRUE)
 			return (NULL);
-		philo_sleep(ph);
-		philo_think(ph);
+		if (philo_sleep(ph) != TRUE)
+			return (NULL);
+		if (philo_think(ph) != TRUE)
+			return (NULL);
 	}
 	pthread_mutex_unlock(&ph->data->times_ate[ph->id - 1]);
 	return (NULL);
