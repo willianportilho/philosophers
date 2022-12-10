@@ -1,16 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_finish.c                                     :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/30 01:25:53 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/09 23:27:38 by wportilh         ###   ########.fr       */
+/*   Created: 2022/12/10 01:02:54 by wportilh          #+#    #+#             */
+/*   Updated: 2022/12/10 02:19:42 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
+
+long long	current_time(void)
+{
+	struct timeval	time;
+
+	gettimeofday(&time, NULL);
+	return ((time.tv_usec / 1000) + (time.tv_sec * 1000));
+}
+
+void	print_status_msg(char *status_msg, t_philo *ph)
+{
+	pthread_mutex_lock(&ph->data->status_msg);
+	printf("%lld %d %s\n", \
+	(current_time() - ph->data->initial_time), ph->id, status_msg);
+	pthread_mutex_unlock(&ph->data->status_msg);
+}
+
+int	print_message_error(char *message)
+{
+	printf("%s\n", message);
+	return (FALSE);
+}
 
 void	clean(t_data *data)
 {
@@ -18,23 +40,4 @@ void	clean(t_data *data)
 	free(data->forks);
 	free(data->time_to_die_cur);
 	free(data->times_ate);
-}
-
-void	finish(t_data *data)
-{
-	int	i;
-
-	i = -1;
-	while (++i < data->n_philos)
-		pthread_join(data->philo_index[i].philo_thread, NULL);
-	pthread_join(data->check, NULL);
-	i = -1;
-	while (++i < data->n_philos)
-	{
-		pthread_mutex_destroy(&data->forks[i]);
-		pthread_mutex_destroy(&data->time_to_die_cur[i]);
-		pthread_mutex_destroy(&data->times_ate[i]);
-	}
-	pthread_mutex_destroy(&data->status_msg);
-	pthread_mutex_destroy(&data->die_mutex);
 }

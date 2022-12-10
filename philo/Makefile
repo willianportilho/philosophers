@@ -6,12 +6,12 @@
 #    By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 21:44:36 by wportilh          #+#    #+#              #
-#    Updated: 2022/12/10 01:51:50 by wportilh         ###   ########.fr        #
+#    Updated: 2022/12/10 02:55:35 by wportilh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SOURCES =		main.c philo_utils.c philo_lib.c philo_init.c philo_life.c \
-				philo_start.c philo_finish.c philo_life_one.c
+SOURCES =		1_main.c 2_init.c 3_one_philo.c 4_more_than_one_philo.c \
+				5_life.c 6_finish.c 7_utils.c 8_lib.c
 
 NAME =			philo
 
@@ -27,7 +27,7 @@ HELL =			valgrind --tool=helgrind
 
 DRD =			valgrind --tool=drd
 
-INC =			./inc
+INC =			inc
 
 SRC_PATH =		src/
 
@@ -95,4 +95,4 @@ re:				fclean all
 norm:
 				norminette ${SRCS} ${INC}
 
-.PHONY:			all clean fclean re norm val
+.PHONY:			all clean fclean re norm val hell drd

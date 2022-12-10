@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:37:26 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/10 00:03:34 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/12/10 02:33:51 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,9 @@
 
 # define TRUE 1
 # define FALSE 0
-# define SUCCESS 0
 # define LIMITLESS -1
 # define FINISH_EAT 0
-# define LAG 10000
+# define LAG 1000
 
 typedef struct s_philo
 {
@@ -58,25 +57,31 @@ typedef struct s_data
 	t_philo			*philo_index;
 }					t_data;
 
-long long	current_time(void);
-int			init(int argc, char *argv[], t_data *data);
-void		clean(t_data *data);
-void		start(t_data *data);
-void		finish(t_data *data);
-int			print_message_error(char *message);
-void		print_status_msg(char *status_msg, t_philo *ph);
+/* ---------------------------------------------------------------------*\
+|	main functions														 |
+\* ---------------------------------------------------------------------*/
 int			life_error(char *message);
+int			init(int argc, char *argv[], t_data *data);
+void		finish(t_data *data);
 void		*life(void *philo);
-void		*life_one(void *philo);
-void		start_one(t_data *data);
+void		start(t_data *data);
+void		start_one_philo(t_data *data);
 
 /* ---------------------------------------------------------------------*\
 |	utils																 |
 \* ---------------------------------------------------------------------*/
+int			print_message_error(char *message);
+void		print_status_msg(char *status_msg, t_philo *ph);
+void		clean(t_data *data);
+long long	current_time(void);
+
+/* ---------------------------------------------------------------------*\
+|	lib																	 |
+\* ---------------------------------------------------------------------*/
 int			ft_isdigit(int c);
-size_t		ft_strlen(const char *s);
-long		ft_atol(const char *nptr);
 void		*ft_memset(void *s, int c, size_t n);
 void		*ft_calloc(size_t nmemb, size_t size);
+long		ft_atol(const char *nptr);
+size_t		ft_strlen(const char *s);
 
 #endif

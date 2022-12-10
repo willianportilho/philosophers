@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_start.c                                      :+:      :+:    :+:   */
+/*   more_than_one.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 01:08:40 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/10 01:31:59 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/12/10 02:34:21 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,6 @@ static void	*until_dead_or_eat(void *dt)
 	return (NULL);
 }
 
-void	start_one(t_data *data)
-{
-	data->initial_time = current_time();
-	pthread_create(&data->philo_index[0].philo_thread, NULL, \
-		&life_one, (void *)&data->philo_index[0]);
-	pthread_join(data->philo_index[0].philo_thread, NULL);
-	pthread_mutex_destroy(&data->forks[0]);
-	pthread_mutex_destroy(&data->status_msg);
-}
-
 void	start(t_data *data)
 {
 	int	i;
@@ -78,7 +68,7 @@ void	start(t_data *data)
 		pthread_mutex_lock(&data->time_to_die_cur[i]);
 		if ((i % 2) == 0)
 			data->philo_index[i].time_to_die_cur = \
-			data->initial_time + data->time_to_die + 1000;
+			data->initial_time + data->time_to_die + LAG;
 		else
 			data->philo_index[i].time_to_die_cur = \
 			data->initial_time + data->time_to_die;
@@ -86,7 +76,7 @@ void	start(t_data *data)
 		pthread_create(&data->philo_index[i].philo_thread, NULL, \
 			&life, (void *)&data->philo_index[i]);
 		if ((i % 2) == 0)
-			usleep(1000);
+			usleep(LAG);
 		i++;
 	}
 	pthread_create(&data->check, NULL, \

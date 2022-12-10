@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_init.c                                       :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 12:56:14 by beatriz           #+#    #+#             */
-/*   Updated: 2022/12/10 00:04:43 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/12/10 02:18:27 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ int	init(int argc, char *argv[], t_data *data)
 {
 	data->philo_index = NULL;
 	data->forks = NULL;
+	data->time_to_die_cur = NULL;
+	data->times_ate = NULL;
 	if (check_args(argc, argv) != TRUE)
 		return (FALSE);
 	init_data(argc, argv, data);

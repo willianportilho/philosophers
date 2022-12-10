@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_life_one.c                                   :+:      :+:    :+:   */
+/*   one_philo.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 01:48:22 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/10 01:48:43 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/12/10 02:27:46 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
-void	*life_one(void *philo)
+static void	*life_one(void *philo)
 {
 	t_philo	*ph;
 
@@ -30,4 +30,11 @@ void	*life_one(void *philo)
 		}
 	}
 	return (NULL);
+}
+
+void	start_one_philo(t_data *data)
+{
+	data->initial_time = current_time();
+	pthread_create(&data->philo_index[0].philo_thread, NULL, \
+		&life_one, (void *)&data->philo_index[0]);
 }
