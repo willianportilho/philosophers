@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willian <willian@student.42.fr>            +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:37:26 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/10 00:03:59 by willian          ###   ########.fr       */
+/*   Updated: 2022/12/11 00:09:46 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,28 +60,29 @@ typedef struct s_data
 /* ---------------------------------------------------------------------*\
 |	main functions														 |
 \* ---------------------------------------------------------------------*/
-int			life_error(char *message);
-int			init(int argc, char *argv[], t_data *data);
-void		finish(t_data *data);
-void		*life(void *philo);
-void		start(t_data *data);
-void		start_one_philo(t_data *data);
+int					life_error(char *message);
+int					init(int argc, char *argv[], t_data *data);
+void				finish(t_data *data);
+void				*life(void *philo);
+void				start(t_data *data);
+void				start_one_philo(t_data *data);
 
 /* ---------------------------------------------------------------------*\
 |	utils																 |
 \* ---------------------------------------------------------------------*/
-int			print_message_error(char *message);
-int			print_status_msg(char *status_msg, t_philo *ph);
-void		clean(t_data *data);
-long long	current_time(void);
+int					print_message_error(char *message);
+int					print_status_msg(char *status_msg, t_philo *ph);
+int					check_if_is_dead(t_data *data);
+void				clean(t_data *data);
+long long			current_time(void);
 
 /* ---------------------------------------------------------------------*\
 |	lib																	 |
 \* ---------------------------------------------------------------------*/
-int			ft_isdigit(int c);
-void		*ft_memset(void *s, int c, size_t n);
-void		*ft_calloc(size_t nmemb, size_t size);
-long		ft_atol(const char *nptr);
-size_t		ft_strlen(const char *s);
+int					ft_isdigit(int c);
+void				*ft_memset(void *s, int c, size_t n);
+void				*ft_calloc(size_t nmemb, size_t size);
+long				ft_atol(const char *nptr);
+size_t				ft_strlen(const char *s);
 
 #endif
