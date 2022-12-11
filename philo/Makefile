@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: willian <willian@student.42.fr>            +#+  +:+       +#+         #
+#    By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 21:44:36 by wportilh          #+#    #+#              #
-#    Updated: 2022/12/09 23:57:20 by willian          ###   ########.fr        #
+#    Updated: 2022/12/11 03:01:03 by wportilh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,13 +64,13 @@ ${OBJ_PATH}%.o:	${SRC_PATH}%.c
 				@${CC} ${CFLAGS} -c $< -o $@
 
 val:			${NAME}
-				${VAL} ./philo 4 410 200 200 7
+				${VAL} ./philo 4 410 200 200 3
 
 hell:			${NAME}
-				${HELL} ./philo 4 410 200 200 7
+				${HELL} ./philo 4 410 200 200 3
 
 drd:			${NAME}
-				${DRD} ./philo 4 410 200 200 7
+				${DRD} ./philo 4 410 200 200 3
 
 run:			${NAME}
 				./philo 13 10000 30 30
