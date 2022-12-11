@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:37:26 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/11 02:33:04 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/12/11 02:40:43 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,6 @@ long long			current_time(void);
 |	lib																	 |
 \* ---------------------------------------------------------------------*/
 int					ft_isdigit(int c);
-void				*ft_memset(void *s, int c, size_t n);
-void				*ft_calloc(size_t nmemb, size_t size);
 long				ft_atol(const char *nptr);
 size_t				ft_strlen(const char *s);
 
