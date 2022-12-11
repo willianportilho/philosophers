@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 01:48:22 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/10 23:07:56 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/12/11 02:46:23 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	*life_one(void *philo)
 		if (ph->time_to_die_cur < current_time())
 		{
 			pthread_mutex_unlock(&ph->data->forks[ph->fork_right]);
-			print_status_msg("die", ph);
+			print_status_msg("died", ph);
 			return (NULL);
 		}
 	}
