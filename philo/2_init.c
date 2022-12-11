@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 12:56:14 by beatriz           #+#    #+#             */
-/*   Updated: 2022/12/10 02:59:47 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/12/11 02:35:24 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	init_philo(t_data *data)
 	int	i;
 
 	i = 0;
-	data->philo_index = ft_calloc(data->n_philos, sizeof(t_philo));
+	data->philo_index = malloc(data->n_philos * sizeof(t_philo));
 	if (data->philo_index == NULL)
 		return (print_message_error("error: init_philo allocation"));
 	while (i < data->n_philos)
@@ -81,13 +81,13 @@ static int	init_mutexes(t_data *data)
 	int	i;
 
 	i = -1;
-	data->forks = ft_calloc(data->n_philos, sizeof(pthread_mutex_t));
+	data->forks = malloc(data->n_philos * sizeof(pthread_mutex_t));
 	if (data->forks == NULL)
 		return (print_message_error("error: init_forks allocation"));
-	data->time_to_die_cur = ft_calloc(data->n_philos, sizeof(pthread_mutex_t));
+	data->time_to_die_cur = malloc(data->n_philos * sizeof(pthread_mutex_t));
 	if (data->time_to_die_cur == NULL)
 		return (print_message_error("error: init_forks allocation"));
-	data->times_ate = ft_calloc(data->n_philos, sizeof(pthread_mutex_t));
+	data->times_ate = malloc(data->n_philos * sizeof(pthread_mutex_t));
 	if (data->times_ate == NULL)
 		return (print_message_error("error: init_forks allocation"));
 	while (++i < data->n_philos)
