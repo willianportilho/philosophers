@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 19:24:43 by wportilh          #+#    #+#             */
-/*   Updated: 2022/12/11 00:43:41 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/12/11 02:26:36 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,9 @@
 static int	take_forks(t_philo *ph)
 {
 	pthread_mutex_lock(&ph->data->forks[ph->fork_left]);
-	if (print_status_msg("has taken a fork", ph) != TRUE)
-	{
-		pthread_mutex_unlock(&ph->data->forks[ph->fork_left]);
-		return (FALSE);
-	}
 	pthread_mutex_lock(&ph->data->forks[ph->fork_right]);
-	if (print_status_msg("has taken a fork", ph) != TRUE)
-	{
-		pthread_mutex_unlock(&ph->data->forks[ph->fork_left]);
-		pthread_mutex_unlock(&ph->data->forks[ph->fork_right]);
-		return (FALSE);
-	}
+	print_status_msg("has taken a fork", ph);
+	print_status_msg("has taken a fork", ph);
 	return (TRUE);
 }
 
